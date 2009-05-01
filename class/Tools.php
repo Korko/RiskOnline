@@ -181,7 +181,7 @@ class Tools
 	
 	public static function getFreeColor($g_id, $prec=NULL)
 	{
-		$result = F::i(_DBMS_SYS)->query('SELECT col_id FROM !prefix_colors WHERE col_id NOT IN ( SELECT col_id FROM !prefix_players WHERE g_id = ? )', array($g_id));
+		$result = F::i(_DBMS_SYS)->query('SELECT C.col_id FROM mvc_colors C WHERE NOT EXISTS(SELECT NULL FROM mvc_players P WHERE P.g_id=? AND P.col_id=C.col_id)', array($g_id));
 		
 		if( is_null($prec) )
 			return $result->getObject()->col_id;
