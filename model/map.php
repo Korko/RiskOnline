@@ -47,18 +47,6 @@ class Map extends Model
 				'cou_d' => $obj->cou_d,
 				'm_id' => $obj->m_id
 			));
-		}
-	
-		/**
-		 * Links
-		 */
-		$result = F::i(_DBMS_SYS)->query('SELECT cou1.cou_name AS cou1, cou2.cou_name AS cou2 FROM !prefix_adjacent a, !prefix_countries cou1, !prefix_countries cou2 WHERE a.cou_id1 = cou1.cou_id AND a.cou_id2 = cou2.cou_id');
-		while(($obj = $result->getObject()) != NULL)
-		{
-			$view->setGroupValues('adjacents', array(
-				'from' => $obj->cou1,
-				'to' => $obj->cou2
-			));
 		}	
 		
 		/**
@@ -100,11 +88,6 @@ class Map extends Model
 				));
 			}
 		}
-		
-		/**
-		 * Variables
-		 */
-		$view->setValue('m_id', F::i('Session')->getMid());
 		
 		return $view->getContent();
 	}

@@ -265,7 +265,7 @@ class Tools
 		}
 	}
 	
-	public function arrayMapRecursive($callback, $ary)
+	public static function arrayMapRecursive($callback, $ary)
 	{
 		foreach ($ary AS $key => $value)
 		{
