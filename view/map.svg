@@ -76,6 +76,8 @@
 	function territory_click (event) {
 		id = event.target.getAttributeNS(null,"id");
 		
+		if( id == '' ) return;
+		
 		if( from == null && isClass($(id), 'player_{$m_id}') )
 		{
 			from = id;
@@ -99,10 +101,14 @@
 				alert('from : '+from+' to '+id);
 				from = null;
 			}
+			else if( from == id )
+			{
+				alert('reset');
+				from = null;
+			}
 			else
 			{
 				alert('no link');
-				from = null;
 			}
 		}
 	}
