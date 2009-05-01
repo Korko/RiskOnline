@@ -45,9 +45,14 @@ class Map extends Model
 				'm_id' => $obj->m_id
 			));
 		}
-		
+	
 		$view->setGroupValues('styles', array(
-			'style_name' => '.player_'.F::i('Session')->getMid(),
+			'style_name' => 'g.territory',
+			'style_code' => 'cursor: url(view/sword.cur), crosshair'
+		));
+			
+		$view->setGroupValues('styles', array(
+			'style_name' => 'g.player_'.F::i('Session')->getMid(),
 			'style_code' => 'cursor: pointer'
 		));
 				
@@ -57,7 +62,7 @@ class Map extends Model
 			while(($obj = $result->getObject()) != NULL)
 			{
 				$view->setGroupValues('styles', array(
-					'style_name' => '.player_'.$obj->m_id,
+					'style_name' => 'g.player_'.$obj->m_id,
 					'style_code' => 'fill: #'.$obj->col_code
 				));
 			}

@@ -51,7 +51,9 @@
 
 <g id="all" transform="translate(-167.99651,-118.55507)">
 	<!-- BEGIN LOOP territories -->
-	<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
+	<g class="{$territories.cou_name} territory player_{$territories.m_id}">
+		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
+	</g>
 	<!-- END LOOP -->
 </g>
 
@@ -62,10 +64,12 @@
 	}
 	
 	function install() {
-		var terr = document.getElementsByTagName('path');
+		var terr = document.getElementsByTagName('g');
 	
 		for(var i=0; i<terr.length; i++)
 		{
+			if( terr[i].id == 'all' ) continue;
+			
 			terr[i].addEventListener('click', territory_click, false);
 		}
 	}
