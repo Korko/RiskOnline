@@ -3,10 +3,9 @@
 Revoir les "Oust!" et le "bad access key"
 
 Nombre d'armées par territoire (positions sur la carte)
-Choisir pays d'origine
-Choisir pays d'arrivé
 Choisir nombre de troupes à déplacer
-Enregistrer le plan de bataille (le rendre visible sur la carte)
+Rendre visible sur la carte le plan de bataille
+Valider le plan
 Calculer le résultat
 Etape renforcements
 
