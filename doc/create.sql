@@ -174,8 +174,8 @@ INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (30, 31); # Eastern United St
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (30, 33); # Eastern United States - Central America
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (31, 33); # Western United States - Central America
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (33, 42); # Central America - Venezuela
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (33, 41); # Venezuela - Brazil
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (33, 40); # Venezuela - Peru
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (42, 41); # Venezuela - Brazil
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (42, 40); # Venezuela - Peru
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (41, 40); # Brazil - Peru
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (41, 39); # Brazil - Argentina
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (41, 29); # Brazil - North Africa
