@@ -23,6 +23,11 @@ class Launch_Game extends Model
 				throw new Exception('Game already launched');
 			}
 			
+			if( $game->m_id != F::i('Session')->getMid() )
+			{
+				throw new Exception('You are not the owner of this game !');
+			}
+			
 			if( $game->getNumPlayers() == 1 )
 			{
 				throw new Exception('Cannot launch a game with a single player');

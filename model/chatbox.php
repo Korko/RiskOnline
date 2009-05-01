@@ -47,14 +47,14 @@ class Chatbox extends Model
 				$m_name = $params['name'];
 			}
 			
-			F::i(_DBMS_SYS)->exec('INSERT INTO !prefix_messages (m_id, m_name, mes_content) VALUES (?, ?, ?)', array(F::i('Session')->getMid(), $m_name, $params['content']));
+			F::i(_DBMS_SYS)->exec('INSERT INTO !prefix_chatbox_messages (m_id, m_name, mes_content) VALUES (?, ?, ?)', array(F::i('Session')->getMid(), $m_name, $params['content']));
 			
 			// Et sortie
 			return;
 		}
 		
 		// Recuperation des derniers messages
-		$sql = 'SELECT mes.m_name, m.m_login, mes.m_id, mes_content, UNIX_TIMESTAMP(mes_date) AS mes_date FROM !prefix_messages mes, !prefix_members m WHERE m.m_id = mes.m_id';
+		$sql = 'SELECT mes.m_name, m.m_login, mes.m_id, mes_content, UNIX_TIMESTAMP(mes_date) AS mes_date FROM !prefix_chatbox_messages mes, !prefix_members m WHERE m.m_id = mes.m_id';
 		$array = array();
 		
 		// si une date est donnée, tous les messages depuis cette date
