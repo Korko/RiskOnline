@@ -46,6 +46,11 @@ class Map extends Model
 			));
 		}
 		
+		$view->setGroupValues('styles', array(
+			'style_name' => '.player_'.F::i('Session')->getMid(),
+			'style_code' => 'cursor: pointer'
+		));
+				
 		if( $mode == 'owner' )
 		{
 			$result = F::i(_DBMS_SYS)->query('SELECT p.m_id, col.col_code FROM !prefix_players p, !prefix_colors col WHERE p.g_id = ? AND p.col_id = col.col_id', array($game->g_id));

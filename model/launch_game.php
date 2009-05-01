@@ -18,7 +18,7 @@ class Launch_Game extends Model
 		{
 			$game = new Game($params['game']);
 			
-			if( $game->getStep() > 0 )
+			if( $game->g_step > 0 )
 			{
 				throw new Exception('Game already launched');
 			}
@@ -58,8 +58,9 @@ class Launch_Game extends Model
 		{
 			$countries[] = $obj->cou_id;
 		}
+		
 		$count_countries = count($countries);
-		$countries_per_player = intval($count_countries/$count_$players);
+		$countries_per_player = intval($count_countries/$count_players);
 		shuffle($countries);
 		$lands = array_chunk($countries, $countries_per_player);
 		
@@ -70,7 +71,7 @@ class Launch_Game extends Model
 		{
 			$lands[$i][] = $remaining[$i];
 		}
-
+		
 		// Save and Go to step 1
 		for($i=0; $i<$count_players; $i++)
 		{

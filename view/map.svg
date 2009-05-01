@@ -11,7 +11,7 @@
 <title>Map</title>
 
 <desc>Plateau du Jeu de RiskOnline</desc>
-
+	
 <style type="text/css" id="style_css_sheet">
 
 	#all{
@@ -58,14 +58,19 @@
 <script type="text/javascript">
 <![CDATA[
 	function territory_click (event) {
-		alert('tot');
+		alert(event.target.id);
 	}
 	
 	function install() {
 		var terr = document.getElementsByTagName('path');
 	
-		alert('huhu');
+		for(var i=0; i<terr.length; i++)
+		{
+			terr[i].addEventListener('click', territory_click, false);
+		}
 	}
+	
+	install();
 ]]>
 </script>
 
