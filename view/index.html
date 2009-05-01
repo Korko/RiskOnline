@@ -1,0 +1,48 @@
+				<script type="text/javascript">
+					cron = new Timeout.ajax({
+						timeout: 1000,
+						config: {
+							method: 'GET',
+							url: '{$u_chatbox}',
+							callback: display_chatbox_messages,
+						},
+						callfront: callfront_chatbox
+					});
+					
+					function clear_chatbox(form)
+					{
+						$('__content').value='';
+					}
+					
+					cron.start();
+				</script>
+				
+				<div id="hat">
+					<h1>{$LG_CHATBOX}</h1>
+					<div>
+						<div id="chatbox" style="padding: 0; max-height: 200px; overflow: auto;">
+						
+						</div>
+						{$CHATBOX_FORM}
+					</div>
+				</div>
+				
+				<hr style="width: 700px; margin: 20px 0 20px 0; background-position:left;" />
+
+				<div class="news">
+					<h1>Venez !</h1>
+					<div>
+						Venez nous rejoindre dans une fabuleuse aventure : celle du RiskOnline.<br />
+						Notre version revisite le célèbre jeu de société en y apportant quelques nouveautés : <br />
+						<ul>
+							<li>La Coopération : Il vous est possible d'attaquer à plusieurs sur un même adversaire.</li>
+							<li>La Confidentialité : Afin de rendre le jeu plus excitant, il est impossible pour vos adversaires de voir ce que vous allez jouer. Ils ne peuvent voir que leurs propres actions.</li>
+							<li>La Priorité sur les Attaques : Vous pouvez déterminer lors d'une attaque la priorité que vous voulez pour prendre le territoire. Vous avez le choix entre : faible et forte. Les adversaires qui attaqueront un même territoire avec une même priorité devront s'affronter pour déterminer qui remportera le territoire.</li>
+							<li>Les Batailles aux Frontières : Afin d'éviter de vous faire écraser par plusieurs armées en même temps, il est possible de contre-attaquer. Deux attaques croisées se transformeront alors en une bataille frontalière où tous ont les mêmes chances. Qui vaincra ?</li>
+							<li>Différents Affichages : Afin d'améliorer l'aspect stratégique, il est possible de choisir entre trois modes d'affichage : "Continents" où chaque continent à une couleur différente quelque soit son (ou ses) propriétaire(s), "Joueur" où chaque territoire à la couleur de son propriétaire et enfin "Risque" où les zones adverses sont plus ou moins foncées en fonction du rapport entre vos armées proches et celles de vos ennemis.</li>
+						</ul>
+						Bien d'autres viendront s'ajouter par la suite. Mais serez vous prêt à vous battre ? Aurez vous le cran pour défier vos amis dans la conquête du monde ?<br />
+						<br />
+						Vous pensez être suffisamment fort ? Alors <a href="#" alt="inscriptions">entrez</a> dans l'arène !
+					</div>
+				</div>

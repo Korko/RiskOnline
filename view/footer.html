@@ -1,0 +1,20 @@
+			</div>
+		</div>
+		
+		<hr /> <!-- Only exception of the Syntax View of this page -->
+
+		<div id="footer">
+			<a href="#">{$LG_CONTACTS}</a> - <a href="#">{$LG_INFOS}</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.body.style.backgroundImage = 'url("{$C_VIEW_DIR|escape_double}/images/bg.png")';
+		document.body.style.backgroundPosition = ($('all').offsetLeft-273)+'px 0';
+		document.body.style.backgroundRepeat = 'repeat-y';
+		
+		<!-- BEGIN SWITCH debug -->
+		document.write('<div id="benchmark"><p>Temps total Client (secondes) : '+(Util.benchmark.stop()/1000)+'</p><p>Temps total Serveur (secondes) : {$BENCHMARK}</p></div>');
+		<!-- END SWITCH -->
+	</script>
+</body>
+</html>

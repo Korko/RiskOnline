@@ -1,0 +1,5 @@
+SetEnv PHP_VER 5
+SetEnv SHORT_OPEN_TAG 0
+
+RewriteEngine on
+RewriteRule ^([a-z_-]+)\.html index.php?action=$1 [QSA,L]

@@ -1,0 +1,12 @@
+{
+	items:[
+	<!-- BEGIN LOOP message -->
+	{
+		author_mid: {$message.author_mid},
+		author_name: '{$message.author_name|escape_simple}',
+		content: '{$message.content|escape_simple}',
+		date: '{$message.date}'
+	},
+	<!-- END LOOP -->
+	]
+}

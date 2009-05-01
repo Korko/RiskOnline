@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>{$SITE_TITLE}</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/functions.js"></script>
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/Util.js"></script>
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/JXHTML.js"></script>
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/Frame.js"></script>
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/Effects.js"></script>
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/Timeout.js"></script>
+	<script type="text/javascript" src="{$C_VIEW_DIR|escape_double}/js/scripts.js"></script>
+
+	<script type="text/javascript">
+		<!-- BEGIN SWITCH debug -->
+			Util.benchmark.start();
+		<!-- END SWITCH -->
+		
+		window.onload=function(){
+			JXHTML.parse();
+		}
+	</script>
+
+	<link href="{$C_VIEW_DIR|escape_double}/style.css" rel="stylesheet" type="text/css" rel="stylesheet" />
+</head>

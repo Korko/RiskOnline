@@ -1,0 +1,25 @@
+<?php
+
+if( !defined('_INDEX') ) {
+	header('HTTP/1.1 403 Forbidden');
+	exit;
+}
+
+/**
+ * @package ifips.framework.mvc.models
+ */
+class {$ModelName} extends Model
+{
+	const PRIVACY = {$Privacy};
+
+	public function getView($params, $synchrone)
+	{
+
+		
+		return {$content};
+	}
+}
+
+
+
+{$content} can be parent::setBody(ViewItem $view, String $title)

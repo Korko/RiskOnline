@@ -1,0 +1,17 @@
+<!-- BEGIN SWITCH form_errors -->
+<div>
+	<h1>{$LG_ERROR}</h1>
+	
+	<div>
+		<ul>
+			<!-- BEGIN LOOP form_errors -->
+			<li>{$form_errors.error}</li>
+			<!-- END LOOP -->
+		</ul>
+	</div>
+</div>
+<!-- END SWITCH -->
+
+<div>
+	{$FORM}
+</div>

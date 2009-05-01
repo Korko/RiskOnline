@@ -1,0 +1,345 @@
+/*************************
+ ***** Other *************
+ *************************/
+
+form.tabbed_form p {
+	clear: left;
+	margin: 0;
+	font-size: 16px;
+	line-height: 16px;
+	height: 20px;
+	padding: 4px 0 4px 0;
+	padding-left: 155px; /*width of left column containing the label elements*/
+	border-top: 1px dashed #CCC;
+	height: 1%;
+}
+
+form.tabbed_form .field_explain {
+	font-size: 10px;
+	width: 150px;
+	line-height: 10px;
+	padding-top: 0;
+}
+
+form.tabbed_form label {
+	font-weight: bold;
+	float: left;
+	text-align: right;
+	margin-left: -155px; /*width of left column*/
+	width: 150px; /*width of labels. Should be smaller than left column (155px) to create some right margin*/
+}
+
+.field_error {
+	border: 2px solid #F00;
+}
+
+form.inline p {
+	display: inline;
+}
+
+fieldset.chatbox_form {
+	margin: 0;
+	padding: 0;
+}
+
+form.chatbox_form p {
+	display: inline;
+	clear: none;
+	padding: 0;
+	margin: 0;
+	margin-right: 50px;
+	width: 200px;
+}
+
+form.chatbox_form label {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	clear: none;
+}
+
+form.chatbox_form input {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	clear: none;
+}
+
+/*************************
+ ***** General ***********
+ *************************/
+
+html {
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow-y: auto;
+	background-repeat: repeat-y;
+}
+
+#header, #center, #footer {
+	width: 100%;
+}
+
+#all {
+	width: 985px;
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+
+	min-height: 100%;
+	position: relative;
+	left: 50%;
+	margin-left: -492px;
+}
+
+a, a:link, a:hover, a:active, a:focus {
+	color: #000;
+	border: 0;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/*************************
+ ***** Header ************
+ *************************/
+
+#header a
+{
+	margin-top: 50px;
+	background-color: #FCA;
+	height: 223px;
+	text-align: center;
+	line-height: 100px;
+	margin-bottom: 20px;
+
+	background-image: url('images/banner.png');
+	background-repeat: none;
+	border: 0;
+}
+
+/*************************
+ ***** Menus *************
+ *************************/
+
+#menus {
+	height: 100%;
+	float: left;
+}
+
+#menus > div {
+	width: 200px;
+	overflow-x: hidden;
+	margin-bottom: 20px;
+}
+
+#menus > div > h1 {
+	width: 200px;
+	background-image: url('images/menu_title.png');
+	background-repeat: none;
+	border: 0;
+	color: #000;
+	line-height: 29px;
+	font-size: 15px;
+	text-align: center;
+	height: 29px;
+	margin-bottom: 0;
+}
+
+#menus > div > div.content {
+	color: #000;
+	margin-left: 10px;
+	width: 180px;
+	margin-top: 0;
+	background-image: url('images/menu_corps_repeat.png');
+	background-repeat: repeat-y;
+}
+
+#menus form p {
+	margin: 0;
+	padding: 0;
+	width: 150px;
+}
+
+#menus ul {
+	list-style-type: none;
+	list-style-position: outside;
+	margin: 0;
+	padding: 0;
+}
+
+#menus li {
+	display: block;
+}
+
+#connect_block fieldset {
+	width: 180px;
+	border: 0;
+}
+
+#connect_block input {
+	background-image: url('images/menu_corps_repeat.png');
+	background-repeat: repeat-y;
+}
+
+#connect_submit {
+	width: 100px;
+	margin-left: 30px;
+}
+
+/*************************
+ ***** Content ***********
+ *************************/
+
+#hat h1 {
+	color: #000;
+	background-image: url('images/news_titre.png');
+	background-repeat: none;
+	height: 50px;
+	line-height: 50px;
+	font-size: 25px;
+	text-align: center;
+
+	margin-bottom: 0;
+}
+
+#content {
+	height: 100%;
+	float: left;
+	width: 700px;
+	margin-bottom: 20px;
+	margin-left: 85px;
+}
+
+#content fieldset legend {
+	background-image: url('images/news_titre.png');
+	background-repeat: none;
+}
+
+#content fieldset, #content input {
+	background-image: url('images/news_corps_repeat.png');
+	background-repeat: repeat-y;
+}
+
+#content > div {
+	margin-top: 30px;
+}
+
+#content > div:first-child {
+	margin-top: 0;
+}
+
+#content > div > h1 {
+	padding: 0;
+	margin : 0;
+	color: #000;
+	background-image: url('images/news_titre.png');
+	background-repeat: none;
+	height: 50px;
+	line-height: 50px;
+	font-size: 25px;
+	text-align: center;
+
+	margin-bottom: 0;
+}
+
+#content > div div {
+	padding: 15px;
+
+	text-align: justify;
+	text-indent: 40px;
+
+	color: #000;
+
+	margin-top: 0;
+	background-image: url('images/news_corps_repeat.png');
+	background-repeat: repeat-y;
+}
+
+#content > div div table {
+	width: 100%;
+	border: 1px solid #000;
+}
+
+#content > div div table th {
+	border: 2px double #000;
+}
+
+/*************************
+ ***** Footer ************
+ *************************/
+
+hr {
+	clear: both;
+	display: block;
+	background-image: url('images/footer_delimiter.png');
+	width: 900px;
+	height: 12px;
+	margin-bottom: 50px; /* Height of Footer */
+	border: 0;
+}
+
+#footer {
+	color: #CCC;
+	position: absolute;
+	bottom: 0;
+
+	text-align: center;
+	clear: both;
+	height: 50px;
+	line-height: 50px;
+}
+
+#footer a, #footer a:focus, #footer a:active, #footer a:link, #footer a:visited{
+	border: 0;
+	color: #d0b782;
+	cursor: pointer;
+	text-decoration: underline;
+	outline: none;
+}
+
+a.button {
+	border: 2px outset #000;
+	background-color: #DDD;
+	display: block;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 100px;
+	position: relative;
+	left: 50%;
+	margin-left: -50px;
+	text-indent: 0;
+	height: 20px;
+	line-height: 20px;
+}
+
+a.button:hover {
+	border-style: inset;
+	text-decoration: none;
+}
+
+#benchmark {
+	color: #FFF;
+}
+
+#map {
+	text-align: center;
+	overflow: hidden;
+	height: 520px;
+	width: 985px;
+	margin: 0;
+	padding: 0;
+}

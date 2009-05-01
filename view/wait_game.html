@@ -1,0 +1,42 @@
+<div>
+	<h1>{$game} ({$LG_GAME_TOTAL_PLAYERS} : <span id="total_players"></span>)</h1>
+	<div>
+		<table id="players">
+			<td>{$LG_LOADING}</td>
+		</table>
+		
+		<a href="{$u_leave|escape_double}" title="{$LG_GAME_LEAVE|escape_double}" class="button">{$LG_GAME_LEAVE}</a>
+		<!-- BEGIN SWITCH creator -->
+		<a href="{$u_launch|escape_double}" title="{$LG_GAME_LAUNCH|escape_double}" class="button">{$LG_GAME_LAUNCH}</a>
+		<!-- END SWITCH -->
+	</div>
+</div>
+
+<script type="text/javascript">
+	function callback_games (request, success, args) {
+			var html = '<tr><th>{$LG_PLAYER_NAME}</th><th>{$LG_PLAYER_COLOR}</th></tr>';
+			
+			var players = eval(request.responseText);
+	
+			for(var i=0; i<players.length; i++)
+			{
+				html += '<tr>';
+				html += '<td>'+players[i].name+'</td>';
+				html += '<td><p style="background-color: #'+players[i].color_code+'; width: 10px; height: 10px; margin: 0; padding: 0; display: inline-block;"></p> ('+players[i].color_name+')</td>';
+				html += '</tr>';
+			}
+			$('players').innerHTML = html;
+			
+			$('total_players').innerHTML = players.length;
+	}
+
+	cron = new Timeout.ajax({
+		timeout: 5000,
+		config: {
+			method: 'GET',
+			url: '{$u_js}',
+			callback: callback_games,
+		}
+	});
+	cron.start();
+</script>

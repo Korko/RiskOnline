@@ -1,0 +1,11 @@
+{
+	items:[
+	<!-- BEGIN LOOP players -->
+	{
+		name: '{$players.name|escape_simple}',
+		color_code: '{$players.color}',
+		color_name: '{$players.col_name|escape_simple}'
+	},
+	<!-- END LOOP -->
+	]
+}

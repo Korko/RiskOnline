@@ -1,0 +1,28 @@
+﻿-------------------- Importantes ----------------------------------------
+(Algo) Revoir la gestion des erreurs, enregistrement en envoi mail etc...
+Revoir les "Oust!" et le "bad access key"
+
+Nombre d'armées par territoire (positions sur la carte)
+Choisir pays d'origine
+Choisir pays d'arrivé
+Choisir nombre de troupes à déplacer
+Enregistrer le plan de bataille (le rendre visible sur la carte)
+Calculer le résultat
+Etape renforcements
+
+--------------------- Détails -------------------------------------------
+Gestion du compte membre
+Interface Admin/Modération
+Statistiques --(Dan)
+Changer de couleur dans partie --(Dan)
+Connexion Automatique
+Faire l'animation du déplacement des troupes
+Faire l'animation du changement de propriétaire d'un pays (dégradé ?)
+(Algo) Meilleur affichage des heures dans les listes des parties
+Approfondissement du FORM
+Si suppression d'un membre, conserver messages dans Chatbox et passer le m_id à 1 et le m_name au login du membre
+Si redirection, s'assurer qu'on reste sur le site ! (Securité Phishing)
+(Algo) Mode Defense, dégradé selon le risque
+En cliquant sur un pseudo, voir les parties créées par lui et celles où il joue (hors les siennes)
+Envoi d'un email avec rappel des identifiants à l'enregistrement
+Ajout de "J'ai oublié mon mot de passe"

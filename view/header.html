@@ -1,0 +1,51 @@
+<!-- INCLUDE FILE top.html -->
+<body>
+	<div id="all">
+		<div id="header"><a href="?action=index">&nbsp;</a></div>
+
+		<div id="center">
+			<div id="menus">
+				<div id="block_welcome">
+					<h1>{$LG_BLOCK_WELCOME}</h1>
+					<div class="content">{$L_WELCOME}</div>
+				</div>
+				
+				<!-- BEGIN SWITCH is_guest -->
+				<div id="connect_block">
+					<h1>{$LG_BLOCK_CONNEXION}</h1>
+					<div class="content">
+						{$FORM_CONNECT}
+					</div>
+				</div>
+				<!-- END SWITCH -->
+				
+				<!-- BEGIN SWITCH is_member -->
+				<div>
+					<h1>{$LG_BLOCK_PLAY}</h1>
+					<div class="content">
+						<ul>
+							<li><a href="?action=new_game">{$LG_NEW_GAME}</a></li>
+							<li><a href="?action=current_games">{$LG_CURRENT_GAMES}</a></li>
+							<li><a href="?action=join_game">{$LG_JOIN_GAME}</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- END SWITCH -->
+				
+				<div>
+					<h1>{$LG_BLOCK_ACCOUNT}</h1>
+					<div class="content">
+						<ul>
+							<!-- BEGIN SWITCH is_guest -->
+							<li><a href="?action=connect">{$LG_CONNECT}</a></li>
+							<li><a href="?action=register">{$LG_REGISTER}</a></li>
+							<!-- END SWITCH -->
+							<!-- BEGIN SWITCH is_member -->
+							<li><a href="?action=disconnect">{$LG_DISCONNECT}</a></li>
+							<!-- END SWITCH -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<div id="content">
