@@ -118,6 +118,7 @@ a:hover {
 
 #header a
 {
+	display: block;
 	margin-top: 50px;
 	background-color: #FCA;
 	height: 223px;
