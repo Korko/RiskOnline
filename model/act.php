@@ -39,11 +39,16 @@ class Act extends Model
 		}
 		
 		// Check from and to
-		$result = F::i(_DBMS_SYS)->query('SELECT * FROM !prefix_adjacent WHERE (cou_id1=? AND cou_id2=?) OR (cou_id1=? AND cou_id2=?)', array($params['from'], $params['to'], $params['to'], $params['from']));
+		$result = F::i(_DBMS_SYS)->query('SELECT cou_id1, cou1.cou_name AS cou_from, cou_id2, cou2.cou_name AS cou_to FROM !prefix_adjacent a, !prefix_countries cou1, !prefix_countries cou2 WHERE a.cou_id1 = cou1.cou_id AND a.cou_id2 = cou2.cou_id AND (cou1.cou_name=? AND cou2.cou_name=?) OR (cou1.cou_name=? AND cou2.cou_name=?)', array($params['from'], $params['to'], $params['to'], $params['from']));
 		if( $result->getNumRows() != 0 )
 		{
+			$obj = $result->getObject();
+			
+			$from_id = ($obj->cou_from == $params['from']) ? $obj->cou_id1 : $obj->cou_id2;
+			$to_id = ($obj->cou_to == $params['to']) ? $obj->cou_id2 : $obj->cou_id1;
+			
 			// Ok register
-			F::i(_DBMS_SYS)->exec('INSERT INTO !prefix_actions (g_id, cou_from, cou_to, a_strength, a_priority) VALUES (?, ?, ?, ?, ?)', array($params['game'], $params['from'], $params['to'], 1, 1));
+			F::i(_DBMS_SYS)->exec('INSERT INTO !prefix_actions (g_id, cou_from, cou_to, a_strength, a_priority) VALUES (?, ?, ?, ?, ?)', array($params['game'], $from_id, $to_id, 1, 1));
 		}
 	}
 }

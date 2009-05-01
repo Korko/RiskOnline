@@ -1,10 +1,25 @@
-<embed type="image/svg+xml" src="?action=map&game={$game}&mode={$mode|parse_double}" pluginspage="http://www.adobe.com/svg/viewer/install/" />
+<embed id="SVGmap" name="SVGmap" type="image/svg+xml" src="?action=map&game={$game}&mode={$mode|parse_double}" pluginspage="http://www.adobe.com/svg/viewer/install/" />
 
-<script type="text/javascript">
+<script type="text/ecmascript">
 	adjacent = new Array();
 	<!-- BEGIN LOOP adjacents -->
 	adjacent.push(new Array('{$adjacents.from|parse_simple}', '{$adjacents.to|parse_simple}'));
 	<!-- END LOOP -->
+
+	var svgDocument = document.embeds['SVGmap'].getSVGDocument();
+	
+	function init() {
+		var embed = document.getElementById('SVGmap');
+		svgDocument = embed.getSVGDocument();
+		
+		var terr = svgDocument.getElementsByTagName('g');
+		for(var i=0; i<terr.length; i++)
+		{
+			if( terr[i].id == 'all' ) continue;
+			terr[i].addEventListener('click', territory_click, false);
+		}
+	}
+	window.onload=init;
 	
 	from=null;
 	function territory_click (event) {
@@ -12,7 +27,7 @@
 		
 		if( id == '' ) return;
 		
-		if( from == null && document.embeds[0].getSVGDocument().getElementById(id)getAttributeNS(null,"class").indexOf('player_{$m_id}') != -1 ) )
+		if( (from == null) && (svgDocument.getElementById(id).getAttributeNS(null,"class").indexOf('player_{$m_id}') != -1) )
 		{
 			from = id;
 			alert('from : '+from);
@@ -33,6 +48,10 @@
 			if( check )
 			{
 				// AJAX !!!
+				Util.Ajax({
+					url: '?action=act&game={$game}&from='+from+'&to='+id
+				});
+				
 				alert('from : '+from+' to '+id);
 				from = null;
 			}
@@ -48,12 +67,5 @@
 		}
 	}
 	
-	var terr = document.embeds[0].getSVGDocument().getElementsByTagName('g');
-	
-	for(var i=0; i<terr.length; i++)
-	{
-		if( terr[i].id == 'all' ) continue;
-		
-		terr[i].addEventListener('click', territory_click, false);
-	}
+	//install();
 </script>
