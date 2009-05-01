@@ -59,8 +59,52 @@
 
 <script type="text/javascript">
 <![CDATA[
+	function isClass(obj, className) {
+		return (obj.getAttributeNS(null,"class").indexOf(className) != -1);
+	}
+
+	function $(id) {
+		return document.getElementById(id);
+	}
+	
+	adjacent = new Array();
+	<!-- BEGIN LOOP adjacents -->
+	adjacent.push(new Array('{$adjacents.from|parse_simple}', '{$adjacents.to|parse_simple}'));
+	<!-- END LOOP -->
+	
+	from=null;
 	function territory_click (event) {
-		alert(event.target.id);
+		id = event.target.getAttributeNS(null,"id");
+		
+		if( from == null && isClass($(id), 'player_{$m_id}') )
+		{
+			from = id;
+			alert('from : '+from);
+		}
+		else if( from != null )
+		{
+			// check
+			check = false;
+			
+			for(var i=0; i<adjacent.length; i++)
+			{
+				if( ( adjacent[i][0] == from && adjacent[i][1] == id ) || ( adjacent[i][0] == id && adjacent[i][1] == from ))
+				{
+					check = true;
+				}
+			}
+			
+			if( check )
+			{
+				alert('from : '+from+' to '+id);
+				from = null;
+			}
+			else
+			{
+				alert('no link');
+				from = null;
+			}
+		}
 	}
 	
 	function install() {

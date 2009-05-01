@@ -35,6 +35,9 @@ class Map extends Model
 		
 		$view = View::setFile('map', View::SVG_FILE);
 		
+		/**
+		 * Territories
+		 */
 		$result = F::i(_DBMS_SYS)->query('SELECT cou.cou_name, cou.cou_d, con.con_name, l.m_id FROM !prefix_continents con, !prefix_countries cou, !prefix_lands l WHERE l.g_id = ? AND l.cou_id = cou.cou_id AND cou.con_id = con.con_id', array($game->g_id));
 		while(($obj = $result->getObject()) != NULL)
 		{
@@ -46,6 +49,21 @@ class Map extends Model
 			));
 		}
 	
+		/**
+		 * Links
+		 */
+		$result = F::i(_DBMS_SYS)->query('SELECT cou1.cou_name AS cou1, cou2.cou_name AS cou2 FROM !prefix_adjacent a, !prefix_countries cou1, !prefix_countries cou2 WHERE a.cou_id1 = cou1.cou_id AND a.cou_id2 = cou2.cou_id');
+		while(($obj = $result->getObject()) != NULL)
+		{
+			$view->setGroupValues('adjacents', array(
+				'from' => $obj->cou1,
+				'to' => $obj->cou2
+			));
+		}	
+		
+		/**
+		 * Cursors
+		 */
 		$view->setGroupValues('styles', array(
 			'style_name' => 'g.territory',
 			'style_code' => 'cursor: url(view/sword.cur), crosshair'
@@ -55,7 +73,10 @@ class Map extends Model
 			'style_name' => 'g.player_'.F::i('Session')->getMid(),
 			'style_code' => 'cursor: pointer'
 		));
-				
+			
+		/**
+		 * Display Mode
+		 */	
 		if( $mode == 'owner' )
 		{
 			$result = F::i(_DBMS_SYS)->query('SELECT p.m_id, col.col_code FROM !prefix_players p, !prefix_colors col WHERE p.g_id = ? AND p.col_id = col.col_id', array($game->g_id));
@@ -79,6 +100,11 @@ class Map extends Model
 				));
 			}
 		}
+		
+		/**
+		 * Variables
+		 */
+		$view->setValue('m_id', F::i('Session')->getMid());
 		
 		return $view->getContent();
 	}
