@@ -39,7 +39,7 @@ class Act extends Model
 		}
 		
 		// Check from and to
-		$result = F::i(_DBMS_SYS)->query('SELECT cou_id1, cou1.cou_name AS cou_from, cou_id2, cou2.cou_name AS cou_to FROM !prefix_adjacent a, !prefix_countries cou1, !prefix_countries cou2 WHERE a.cou_id1 = cou1.cou_id AND a.cou_id2 = cou2.cou_id AND (cou1.cou_name=? AND cou2.cou_name=?) OR (cou1.cou_name=? AND cou2.cou_name=?)', array($params['from'], $params['to'], $params['to'], $params['from']));
+		$result = F::i(_DBMS_SYS)->query('SELECT c1.cou_id AS cou_id1, c1.cou_name AS cou_from, c2.cou_id AS cou_id2, c2.cou_name AS cou_to FROM !prefix_adjacent a LEFT JOIN !prefix_countries c1 ON a.cou_id1 = c1.cou_id LEFT JOIN !prefix_countries c2 ON a.cou_id2 = c2.cou_id WHERE (c1.cou_name = ? AND c2.cou_name = ?) OR (c1.cou_name = ? AND c2.cou_name = ?)', array($params['from'], $params['to'], $params['to'], $params['from']));
 		if( $result->getNumRows() != 0 )
 		{
 			$obj = $result->getObject();
