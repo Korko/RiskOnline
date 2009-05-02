@@ -4,15 +4,16 @@ var Effects = {};
  * from: opacity at the beginning (defaut to 100)
  * duration: time in seconds for the effect (default to 10)
  */
-Effects.hide = function(element, duration, from) {
+Effects.hide = function(element, duration, from, to) {
 	element = $(element);
 	from = from || 100;
 	duration = duration || 10;
+	to = to || 0;
 
 	var step=5;
 	var wait = Math.abs(duration/(from/step));
 
-	if( from > 0 )
+	if( from > to )
 	{
 		from = from - step;
 
@@ -20,7 +21,7 @@ Effects.hide = function(element, duration, from) {
 
 		setStyle(element, 'opacity', from);
 
-		if( from > 0 ) setTimeout( "Effects.hide('"+element.id+"', "+duration+", "+from+");", wait);
+		if( from > to ) setTimeout( "Effects.hide('"+element.id+"', "+duration+", "+from+");", wait);
 	}
 
 	return true;
@@ -38,7 +39,7 @@ Effects.fold = function(element, duration, from) {
 	duration = duration || 10;
 	from = parseInt(from) || element.clientHeight;
 
-	var step = 5;
+	var step = 20;
 	var wait = duration/(from/step);
 
 	if(from > 0)

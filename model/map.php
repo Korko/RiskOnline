@@ -48,19 +48,6 @@ class Map extends Model
 				'm_id' => $obj->m_id
 			));
 		}	
-		
-		/**
-		 * Cursors
-		 */
-		$view->setGroupValues('styles', array(
-			'style_name' => 'g.territory',
-			'style_code' => 'cursor: url(view/sword.cur), crosshair'
-		));
-			
-		$view->setGroupValues('styles', array(
-			'style_name' => 'g.player_'.F::i('Session')->getMid(),
-			'style_code' => 'cursor: pointer'
-		));
 			
 		/**
 		 * Display Mode

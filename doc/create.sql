@@ -17,8 +17,6 @@ DROP TABLE IF EXISTS mvc_games CASCADE;
 DROP TABLE IF EXISTS mvc_sessions CASCADE;
 DROP TABLE IF EXISTS mvc_members CASCADE;
 
-DROP TRIGGER IF EXISTS TRIG_CHG_TURN;
-
 CREATE TABLE mvc_members (
 	m_id					INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 	m_auth					INT(3) NOT NULL DEFAULT 1,
@@ -92,12 +90,12 @@ CREATE TABLE mvc_continents (
 	CONSTRAINT UNIQUE_CONTNAME UNIQUE (con_name),
 	CONSTRAINT PK_CONTINENTS PRIMARY KEY(con_id)
 ) TYPE=InnoDB;
-INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (1, 'afrique', 0);
-INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (2, 'oceanie', 0);
-INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (3, 'amerique', 0);
-INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (4, 'brazil', 0);
-INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (5, 'europe', 0);
-INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (6, 'asie', 0);
+INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (1, 'afrique', 3);
+INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (2, 'oceanie', 2);
+INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (3, 'amerique', 5);
+INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (4, 'brazil', 2);
+INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (5, 'europe', 5);
+INSERT INTO mvc_continents (con_id, con_name, con_bonus) VALUES (6, 'asie', 7);
 
 CREATE TABLE mvc_countries (
 	cou_id					INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,

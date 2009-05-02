@@ -1,71 +1,21 @@
 <embed id="SVGmap" name="SVGmap" type="image/svg+xml" src="?action=map&game={$game}&mode={$mode|parse_double}" pluginspage="http://www.adobe.com/svg/viewer/install/" />
 
+<div id="dialogbox" style="background-color: #CCC; width: 900px; height: 100px; overflow: hidden; margin: 0; padding: 0;">
+	<div id="dialogbox_left" style="padding: 0; margin: 0; height: 100%; display: inline-block;">
+		&nbsp;
+	</div>
+	<div id="dialogbox_right" style="padding: 0; margin: 0; height: 100%; display: inline-block;">
+		<div id="chatbox"></div>
+		{$FORM}
+	</div>
+</div>
+
+
 <script type="text/ecmascript">
 	adjacent = new Array();
 	<!-- BEGIN LOOP adjacents -->
 	adjacent.push(new Array('{$adjacents.from|parse_simple}', '{$adjacents.to|parse_simple}'));
 	<!-- END LOOP -->
 
-	var svgDocument = document.embeds['SVGmap'].getSVGDocument();
-	
-	function init() {
-		var embed = document.getElementById('SVGmap');
-		svgDocument = embed.getSVGDocument();
-		
-		var terr = svgDocument.getElementsByTagName('g');
-		for(var i=0; i<terr.length; i++)
-		{
-			if( terr[i].id == 'all' ) continue;
-			terr[i].addEventListener('click', territory_click, false);
-		}
-	}
-	window.onload=init;
-	
-	from=null;
-	function territory_click (event) {
-		id = event.target.getAttributeNS(null,"id");
-		
-		if( id == '' ) return;
-		
-		if( (from == null) && (svgDocument.getElementById(id).getAttributeNS(null,"class").indexOf('player_{$m_id}') != -1) )
-		{
-			from = id;
-			alert('from : '+from);
-		}
-		else if( from != null )
-		{
-			// check
-			check = false;
-			
-			for(var i=0; i<adjacent.length; i++)
-			{
-				if( ( adjacent[i][0] == from && adjacent[i][1] == id ) || ( adjacent[i][0] == id && adjacent[i][1] == from ))
-				{
-					check = true;
-				}
-			}
-			
-			if( check )
-			{
-				// AJAX !!!
-				Util.Ajax({
-					url: '?action=act&game={$game}&from='+from+'&to='+id
-				});
-				
-				alert('from : '+from+' to '+id);
-				from = null;
-			}
-			else if( from == id )
-			{
-				alert('reset');
-				from = null;
-			}
-			else
-			{
-				alert('no link');
-			}
-		}
-	}
-	
-	//install();
+	window.onload = function() { new Risk('SVGmap', '{$m_id}', adjacent) };
 </script>
