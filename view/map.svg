@@ -4,12 +4,12 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    width="985"
    height="520"
    version="1.0">
    
 <style type="text/css" id="style_css_sheet">
-
 	#all{
 <!--
 	ici on remplit avec une couleur
@@ -26,12 +26,20 @@
 	}
 	
 	.troops {
-		fill:#FFFFFF;
+		fill:#FFF;
 		fill-opacity:1;
 		fill-rule:evenodd;
 		stroke: #000;
 		font-size:12px;
 		text-anchor:middle;
+	}
+	
+	text {
+		stroke: #FFF;
+		font-size: 60px;
+		stroke-width: 1px;
+		font-family: arial;
+		font-style: normal;
 	}
 	
 	<!-- BEGIN LOOP styles -->
@@ -49,6 +57,20 @@
 	<!-- BEGIN LOOP territories -->
 	<g class="{$territories.cou_name} territory player_{$territories.m_id}">
 		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
+	</g>
+	<!-- END LOOP -->
+</g>
+
+<defs>
+	<path id="trait" d="M0,0 l-3,-400 l7,0 z" />
+	<rect id="pastille" x="0" y="0" width="60" height="60" stroke="black" stroke-width="4" />
+</defs>
+
+<g id="legendes" visibility="visible" transform="scale(0.2) translate(0,1700)">
+	<!-- BEGIN LOOP legend -->
+	<g id="legende_player_{$legend.m_id}" transform="translate(175,{$=25+{$legend._cursor}*100})">
+		<use xlink:href="#pastille" transform="translate(-100,-55)" fill="#{$legend.col_code}" />
+		<text>{$legend.m_login}</text>
 	</g>
 	<!-- END LOOP -->
 </g>

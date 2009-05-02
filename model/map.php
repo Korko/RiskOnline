@@ -89,6 +89,18 @@ class Map extends Model
 			}
 		}
 		
+		/**
+		 * Legend
+		 */
+		$result = F::i(_DBMS_SYS)->query('SELECT p.m_id, m.m_login, col.col_code FROM !prefix_players p, !prefix_members m, !prefix_colors col WHERE p.m_id = m.m_id AND p.col_id = col.col_id AND p.g_id = ?', array($game->g_id));
+		while(($obj = $result->getObject()) != NULL)
+		{
+			$view->setGroupValues('legend', array(
+				'm_id' => $obj->m_id,
+				'm_login' => $obj->m_login,
+				'col_code' => $obj->col_code
+			));
+		}
 		return $view->getContent();
 	}
 }

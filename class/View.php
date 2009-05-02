@@ -176,8 +176,10 @@ class ViewItem
 		{
 			$this->groups[$group] = array();
 		}
-
-		$this->groups[$group][] = $array;
+		
+		$i = count($this->groups[$group]);
+		$this->groups[$group][$i] = $array;
+		$this->groups[$group][$i]['_cursor'] = $i;
 	}
 
 	public function setSwitch($switch, $value=TRUE)
@@ -211,12 +213,15 @@ class ViewItem
 		$content = $this->parseSwitches($content);
 		$content = $this->parseVars($content);
 		$content = $this->parseGroups($content);
-
+		
 		// Caution : Eval begin the code with a <?php so close it !
 		ob_start();
 		eval(' ?>'.$content);
 		$content = ob_get_contents();
 		ob_end_clean();
+		
+		$content = $this->parseCalcs($content);
+		
 		return $content;
 	}
 
@@ -341,7 +346,7 @@ class ViewItem
 		
 		// Replace group vars
 		// TODO : Cascading group !
-		$content = preg_replace(sprintf(self::VAR_MATCH, '(.+?)\.(.+?)'), '<?php if( isset($this->groups["$1"][$cursor_group_$1]["$2"]) ) echo View::protect($this->groups["$1"][$cursor_group_$1]["$2"], "$3"); ?>', $content);
+		$content = preg_replace(sprintf(self::VAR_MATCH, '([a-z0-9_-]+?)\.([a-z0-9_-]+?)'), '<?php if( isset($this->groups["$1"][$cursor_group_$1]["$2"]) ) echo View::protect($this->groups["$1"][$cursor_group_$1]["$2"], "$3"); ?>', $content);
 
 		return $content;
 	}
@@ -363,12 +368,28 @@ class ViewItem
 		{
 			foreach($matches as $match)
 			{
-				//print_r($matches);
 				$new_content = $this->parse_file($match[1]);
 				$content = str_replace($match[0], $new_content, $content);
 			}
 		}
 
+		return $content;
+	}
+	
+	private function parseCalcs($content)
+	{
+		if( preg_match_all(sprintf(self::VAR_MATCH, '=(.+?)'), $content, $matches, PREG_SET_ORDER) )
+		{
+			foreach($matches as $match)
+			{
+				eval('$value = '.$match[1].';');
+				$function = (isset($match[2])) ? $match[2] : '';
+				$value = View::protect($value, $function);
+				
+				$content = str_replace($match[0], $value, $content);
+			}
+		}
+		
 		return $content;
 	}
 }
