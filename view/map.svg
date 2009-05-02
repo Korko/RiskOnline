@@ -68,9 +68,9 @@
 
 <g id="legendes" visibility="visible" transform="scale(0.2) translate(0,1700)">
 	<!-- BEGIN LOOP legend -->
-	<g id="legende_player_{$legend.m_id}" transform="translate(175,{$=25+{$legend._cursor}*100})">
+	<g id="{$legend.id}" transform="translate(175,{$=25+{$legend._cursor}*100})">
 		<use xlink:href="#pastille" transform="translate(-100,-55)" fill="#{$legend.col_code}" />
-		<text>{$legend.m_login}</text>
+		<text>{$legend.text}</text>
 	</g>
 	<!-- END LOOP -->
 </g>

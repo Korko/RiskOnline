@@ -67,40 +67,46 @@ class Map extends Model
 		 */	
 		if( $mode == 'owner' )
 		{
-			$result = F::i(_DBMS_SYS)->query('SELECT p.m_id, col.col_code FROM !prefix_players p, !prefix_colors col WHERE p.g_id = ? AND p.col_id = col.col_id', array($game->g_id));
+			$result = F::i(_DBMS_SYS)->query('SELECT p.m_id, m.m_login, col.col_code FROM !prefix_players p, !prefix_members m, !prefix_colors col WHERE p.m_id = m.m_id AND p.col_id = col.col_id AND p.g_id = ?', array($game->g_id));
 			while(($obj = $result->getObject()) != NULL)
 			{
 				$view->setGroupValues('styles', array(
 					'style_name' => 'g.player_'.$obj->m_id,
 					'style_code' => 'fill: #'.$obj->col_code
 				));
+				
+				/**
+				 * Legend
+				 */
+				$view->setGroupValues('legend', array(
+					'id' => 'legend_player_'.$obj->m_id,
+					'text' => $obj->m_login,
+					'col_code' => $obj->col_code
+				));
 			}
 		}
 		else if( $mode == 'continents' )
 		{
 			// con_id = col_id... Just to have a color but normaly, no link lol
-			$result = F::i(_DBMS_SYS)->query('SELECT con.con_name, col.col_code FROM !prefix_continents con, !prefix_colors col WHERE con.con_id = col.col_id');
+			$result = F::i(_DBMS_SYS)->query('SELECT con.con_name, con.con_id, col.col_code FROM !prefix_continents con, !prefix_colors col WHERE con.con_id = col.col_id');
 			while(($obj = $result->getObject()) != NULL)
 			{
 				$view->setGroupValues('styles', array(
 					'style_name' => '.'.$obj->con_name,
 					'style_code' => 'fill: #'.$obj->col_code
 				));
+				
+				/**
+				 * Legend
+				 */
+				$view->setGroupValues('legend', array(
+					'class' => 'legend_continent_'.$obj->con_id,
+					'text' => $obj->con_name,
+					'col_code' => $obj->col_code
+				));
 			}
 		}
 		
-		/**
-		 * Legend
-		 */
-		$result = F::i(_DBMS_SYS)->query('SELECT p.m_id, m.m_login, col.col_code FROM !prefix_players p, !prefix_members m, !prefix_colors col WHERE p.m_id = m.m_id AND p.col_id = col.col_id AND p.g_id = ?', array($game->g_id));
-		while(($obj = $result->getObject()) != NULL)
-		{
-			$view->setGroupValues('legend', array(
-				'm_id' => $obj->m_id,
-				'm_login' => $obj->m_login,
-				'col_code' => $obj->col_code
-			));
-		}
 		return $view->getContent();
 	}
 }
