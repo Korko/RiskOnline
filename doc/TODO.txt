@@ -14,6 +14,7 @@ Enregistrer partie une fois finie (Historique)
 Mieux placer les cercles sur pays
 Afficher fleches
 Permettre de clicker sur le cercle pour choisir le pays
+Lors de l'accès a une partie, voir l'étape actuelle et si attente, attendre en JS...
 
 --------------------- Détails -------------------------------------------
 Gestion du compte membre

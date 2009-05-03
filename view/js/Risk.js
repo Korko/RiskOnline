@@ -1,4 +1,4 @@
-var Risk = function(id, m_id, adjacent) {
+var Risk = function(id, g_id, m_id, adjacent) {
 	/**
 	 * Callback for actionPerformed on click on a territory
 	 */
@@ -45,12 +45,64 @@ var Risk = function(id, m_id, adjacent) {
 			}
 		}
 	}
+
+	this.enableCursors = function() {
+		var terr = this.document.getElementsByTagName('g');
+		for(var i=0; i<terr.length; i++)
+		{
+			if( !Risk.checkClass(terr[i], 'territory') ) continue;
+			
+			if( Risk.checkClass(terr[i], 'player_'+this.m_id) )
+			{
+				setStyle(terr[i], 'cursor', 'pointer');
+			}
+			else
+			{
+				setStyle(terr[i], 'cursor', 'url(view/sword.cur), crosshair');
+			}
+			var risk=this;
+			terr[i].onclick = function(event) {
+				risk.territoryClick(event);
+			};
+		}
+	}
+	
+	this.disableCursors = function() {
+		var terr = this.document.getElementsByTagName('g');
+		for(var i=0; i<terr.length; i++)
+		{
+			if( !Risk.checkClass(terr[i], 'territory') ) continue;
+			
+			setStyle(terr[i], 'cursor', '');
+
+			terr[i].onclick = null;
+		}
+	}
 	
 	/**
 	 * Confirm all the actions performed and wait the answer from the server
 	 */
 	this.confirm = function() {
-		//Util.Ajax({url: '?action=act&game={$game}&from='+from+'&to='+id});
+		this.gameStep++;
+		var risk=this;
+		this.cron = new Timeout.ajax({
+			timeout: 3000,
+			config: {
+				url: '?action=solve&game='+this.g_id,
+				callback: function(event) {
+					risk.solveCallback(event);
+				}
+			}
+		});
+		
+		this.disableCursors();
+		$('risk_confirm').value="Attente...";
+		$('risk_confirm').disabled=true;
+		this.cron.start();
+	};
+	
+	this.solveCallback = function(event) {
+		//alert(event);
 	};
 	
 	/**
@@ -62,29 +114,14 @@ var Risk = function(id, m_id, adjacent) {
 	 */
 	this.gameStep = 0;
 	this.m_id = m_id;
+	this.g_id = g_id;
 	this.actionFrom = null;
 	this.document = $(id).getSVGDocument();
 	this.actions = new Array();
 	this.adjacent = adjacent;
+	this.cron = null;
 	
-	var terr = this.document.getElementsByTagName('g');
-	for(var i=0; i<terr.length; i++)
-	{
-		if( !Risk.checkClass(terr[i], 'territory') ) continue;
-		
-		if( Risk.checkClass(terr[i], 'player_'+this.m_id) )
-		{
-			setStyle(terr[i], 'cursor', 'pointer');
-		}
-		else
-		{
-			setStyle(terr[i], 'cursor', 'url(view/sword.cur), crosshair');
-		}
-		var risk=this;
-		terr[i].onclick = function(event) {
-			risk.territoryClick(event);
-		};
-	}
+	this.enableCursors();
 };
 
 Risk.checkClass = function (elt, className) {

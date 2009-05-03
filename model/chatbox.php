@@ -1,7 +1,14 @@
 <?php
 
+if( !defined('_INDEX') ) {
+	header('HTTP/1.1 403 Forbidden');
+	exit;
+}
+
 class Chatbox extends Model
 {
+	const PRIVACY = _PRIVACY_ALL;
+	
 	public static $fields = array(
 		'name' => array(
 			'type' => 'text',

@@ -202,7 +202,7 @@ class Tools
 	
 	public static function parseOutput($output)
 	{
-		$output = preg_replace_callback('#(?:href|action|data|src)=(["\'])(.+?)\\1#i', 'Tools::parseURLCallback', $output);
+		$output = preg_replace_callback('#(?:href|action|data|src=)|(?:url\s*:\s*)(["\'])(.+?)\\1#i', 'Tools::parseURLCallback', $output);
 		$output = preg_replace_callback('#\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b#i', 'Tools::parseEmailCallback', $output);
 		
 		return $output;

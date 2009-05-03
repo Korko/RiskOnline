@@ -2,7 +2,7 @@
 
 <div id="dialogbox" style="background-color: #CCC; width: 900px; height: 100px; overflow: hidden; margin: 0; padding: 0;">
 	<div id="dialogbox_left" style="padding: 0; margin: 0; height: 100%; display: inline-block;">
-		&nbsp;
+		<input type="button" value="Valider" id="risk_confirm" onclick="risk.confirm();" />
 	</div>
 	<div id="dialogbox_right" style="padding: 0; margin: 0; height: 100%; display: inline-block;">
 		<div id="chatbox"></div>
@@ -12,10 +12,11 @@
 
 
 <script type="text/ecmascript">
-	adjacent = new Array();
+	var adjacent = new Array();
 	<!-- BEGIN LOOP adjacents -->
 	adjacent.push(new Array('{$adjacents.from|parse_simple}', '{$adjacents.to|parse_simple}'));
 	<!-- END LOOP -->
 
-	window.onload = function() { new Risk('SVGmap', '{$m_id}', adjacent) };
+	risk = null;
+	window.onload = function() { risk = new Risk('SVGmap', '{$game}', '{$m_id}', adjacent) };
 </script>
