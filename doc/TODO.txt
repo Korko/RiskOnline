@@ -9,6 +9,11 @@ Valider le plan
 Calculer le résultat
 Etape renforcements
 Si ajout action et action déjà existante, ajouter aux forces
+Déterminer gagnant partie
+Enregistrer partie une fois finie (Historique)
+Mieux placer les cercles sur pays
+Afficher fleches
+Permettre de clicker sur le cercle pour choisir le pays
 
 --------------------- Détails -------------------------------------------
 Gestion du compte membre
