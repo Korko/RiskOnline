@@ -102,6 +102,8 @@ CREATE TABLE mvc_countries (
 	cou_name				VARCHAR(30) NOT NULL,
 	con_id					INT(8) UNSIGNED NOT NULL,
 	cou_income				INT(8) UNSIGNED NOT NULL DEFAULT 0,
+	cou_troops_x			INT(4) UNSIGNED NOT NULL,
+	cou_troops_y			INT(4) UNSIGNED NOT NULL,
 	cou_d					TEXT,
 	
 	CONSTRAINT UNIQUE_COUNTRYNAME UNIQUE (cou_name),	

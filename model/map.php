@@ -38,14 +38,17 @@ class Map extends Model
 		/**
 		 * Territories
 		 */
-		$result = F::i(_DBMS_SYS)->query('SELECT cou.cou_name, cou.cou_d, con.con_name, l.m_id FROM !prefix_continents con, !prefix_countries cou, !prefix_lands l WHERE l.g_id = ? AND l.cou_id = cou.cou_id AND cou.con_id = con.con_id', array($game->g_id));
+		$result = F::i(_DBMS_SYS)->query('SELECT cou.cou_name, cou.cou_d, con.con_name, l.m_id, l.l_strength FROM !prefix_continents con, !prefix_countries cou, !prefix_lands l WHERE l.g_id = ? AND l.cou_id = cou.cou_id AND cou.con_id = con.con_id', array($game->g_id));
 		while(($obj = $result->getObject()) != NULL)
 		{
 			$view->setGroupValues('territories', array(
 				'cou_name' => $obj->cou_name,
 				'con_name' => $obj->con_name,
 				'cou_d' => $obj->cou_d,
-				'm_id' => $obj->m_id
+				'm_id' => $obj->m_id,
+				'troops' => $obj->l_strength,
+				'troops_x' => 180,
+				'troops_y' => 190
 			));
 		}	
 			
