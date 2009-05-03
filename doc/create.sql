@@ -39,6 +39,7 @@ CREATE TABLE mvc_sessions (
 	CONSTRAINT FK_SESSION_MEMBER FOREIGN KEY(m_id) REFERENCES mvc_members(m_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) TYPE=InnoDB;
 
+/* historisation */
 CREATE TABLE mvc_games_history (
 	g_id					INT(8) UNSIGNED NOT NULL,
 	victor_id				INT(8) UNSIGNED NOT NULL,
