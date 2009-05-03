@@ -34,7 +34,7 @@
 		text-anchor:middle;
 	}
 	
-	text {
+	text.legend {
 		stroke: #FFF;
 		font-size: 60px;
 		stroke-width: 1px;
@@ -59,7 +59,7 @@
 		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
 		
 		<circle cx="{$territories.troops_x}" cy="{$territories.troops_y}" r="15" />
-		<text x="{$territories.troops_x}" y="{$={$territories.troops_x}+6}" id="{$territories.con_name}_troops">{$territories.troops}</text>
+		<text x="{$={$territories.troops_x}-4}" y="{$={$territories.troops_y}+6}" id="{$territories.con_name}_troops">{$territories.troops}</text>
 	</g>
 	<!-- END LOOP -->
 </g>
@@ -73,7 +73,7 @@
 	<!-- BEGIN LOOP legend -->
 	<g id="{$legend.id}" transform="translate(175,{$=25+{$legend._cursor}*100})">
 		<use xlink:href="#pastille" transform="translate(-100,-55)" fill="#{$legend.col_code}" />
-		<text>{$legend.text}</text>
+		<text class="legend">{$legend.text}</text>
 	</g>
 	<!-- END LOOP -->
 </g>
