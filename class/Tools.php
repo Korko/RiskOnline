@@ -202,14 +202,25 @@ class Tools
 	
 	public static function parseOutput($output)
 	{
-		$output = preg_replace_callback('#(?:href|action|data|src)=(["\'])(.+?)\\1#i', 'Tools::parseOutputCallback', $output);
+		$output = preg_replace_callback('#(?:href|action|data|src)=(["\'])(.+?)\\1#i', 'Tools::parseURLCallback', $output);
+		$output = preg_replace_callback('#\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b#i', 'Tools::parseEmailCallback', $output);
 		
 		return $output;
 	}
-	
-	public static function parseOutputCallback($match)
+
+	public static function parseEmailCallback($match)
+	{
+		return '<span class="email">'.Tools::parseEmail($match[0]).'</span>';
+	}
+		
+	public static function parseURLCallback($match)
 	{
 		return str_replace($match[2], Tools::parseURL($match[2]), $match[0]);
+	}
+	
+	public static function parseEmail($email)
+	{
+		return strrev($email);
 	}
 	
 	public static function parseURL($url)

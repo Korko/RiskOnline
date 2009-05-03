@@ -344,3 +344,8 @@ a.button:hover {
 	margin: 0;
 	padding: 0;
 }
+
+.email {
+	unicode-bidi: bidi-override;
+	direction: rtl;
+}
