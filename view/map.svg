@@ -53,17 +53,6 @@
 	<rect width="750" height="520"/> 
 </g>
 
-<g id="all" transform="translate(-167.99651,-118.55507)">
-	<!-- BEGIN LOOP territories -->
-	<g class="{$territories.cou_name} territory player_{$territories.m_id}">
-		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
-		
-		<circle cx="{$territories.troops_x}" cy="{$territories.troops_y}" r="15" />
-		<text x="{$={$territories.troops_x}-4}" y="{$={$territories.troops_y}+6}" id="{$territories.con_name}_troops">{$territories.troops}</text>
-	</g>
-	<!-- END LOOP -->
-</g>
-
 <defs>
 	<path id="trait" d="M0,0 l-3,-400 l7,0 z" />
 	<rect id="pastille" x="0" y="0" width="60" height="60" stroke="black" stroke-width="4" />
@@ -74,6 +63,17 @@
 	<g id="{$legend.id}" transform="translate(175,{$=25+{$legend._cursor}*100})">
 		<use xlink:href="#pastille" transform="translate(-100,-55)" fill="#{$legend.col_code}" />
 		<text class="legend">{$legend.text}</text>
+	</g>
+	<!-- END LOOP -->
+</g>
+
+<g id="all" transform="translate(-167.99651,-118.55507)">
+	<!-- BEGIN LOOP territories -->
+	<g class="{$territories.cou_name} territory player_{$territories.m_id}">
+		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
+		
+		<circle cx="{$territories.troops_x}" cy="{$territories.troops_y}" r="15" />
+		<text x="{$={$territories.troops_x}-4}" y="{$={$territories.troops_y}+6}" id="{$territories.con_name}_troops">{$territories.troops}</text>
 	</g>
 	<!-- END LOOP -->
 </g>

@@ -50,8 +50,8 @@ class Map extends Model
 				'troops_x' => $obj->cou_troops_x,
 				'troops_y' => $obj->cou_troops_y
 			));
-		}	
-			
+		}
+		
 		/**
 		 * Display Mode
 		 */	

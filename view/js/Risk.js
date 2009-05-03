@@ -3,7 +3,7 @@ var Risk = function(id, m_id, adjacent) {
 	 * Callback for actionPerformed on click on a territory
 	 */
 	this.territoryClick = function(event) {
-		id = event.target.getAttributeNS(null,"id");
+		var id = event.target.getAttributeNS(null,"id");
 		
 		if( id == '' ) return;
 		
