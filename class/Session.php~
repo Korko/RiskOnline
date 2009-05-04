@@ -135,7 +135,7 @@ class Session extends Singleton
 			{
 				// Bad couple s_id / v_ip
 				$check = FALSE;
-				//die('cookie : '.$_COOKIE[session_name()].' => '.ip2long($_SERVER['REMOTE_ADDR']));
+				die('cookie : '.$_COOKIE[session_name()].' => '.ip2long($_SERVER['REMOTE_ADDR']));
 			}
 			else
 			{

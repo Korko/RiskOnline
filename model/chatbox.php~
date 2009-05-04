@@ -96,7 +96,7 @@ class Chatbox extends Model
 			$messages[] = array(
 				'author_mid' => $obj->m_id,
 				'author_name' => ($obj->m_id == _ID_VISITOR) ? $obj->m_name : $obj->m_login,
-				'content' => htmlentities($obj->mes_content),
+				'content' => $obj->mes_content,
 				'date' => $obj->mes_date
 			);
 		}
