@@ -40,8 +40,10 @@ class Play extends Model
 			));
 		}
 		
-		$view->setValue('game', $params['game']);
+		$view->setValue('game', $game->g_id);
 		$view->setValue('mode', (isset($params['mode']) ? $params['mode'] : 'owner'));
+		$view->setValue('confirmed', 
+		$view->setValue('step', $game->g_step);
 		$view->setValue('m_id', F::i('Session')->getMid());
 		
 		return parent::setBody($view, '', TRUE);

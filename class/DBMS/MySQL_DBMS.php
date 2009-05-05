@@ -63,6 +63,16 @@ class MySQL_DBMS extends Singleton implements IDBMS
 		return TRUE;
 	}
 
+	public function mexec($array_sql, $array_params=array())
+	{
+		// Beuha !
+		for($i=0; $i<count($array_sql); $i++)
+		{
+			$params = isset($array_params[$i]) ? $array_params[$i] : array();
+			$this->exec($array_sql[$i], $params); // Optimisation nécéssaire...
+		}
+	}
+	
 	private function real_query($sql, $params)
 	{
 		$sql = Tools::parseDBMSPrefix($sql);

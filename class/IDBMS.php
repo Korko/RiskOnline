@@ -22,6 +22,12 @@ interface IDBMS
 	 */
 	public function query($sql, $params=array());
 
+	// Query Without return (just a boolean) LIKE INSERT, CREATE, UPDATE
+	public function exec($sql, $params=array());
+	
+	// Multiple Query
+	public function mexec($array_sql, $array_params=array());
+	
 	/**
 	 * Escape a string in order to protect against SQL Injections
 	 *

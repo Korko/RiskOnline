@@ -1,4 +1,4 @@
-var Risk = function(id, g_id, m_id, adjacent) {
+var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 	/**
 	 * Callback for actionPerformed on click on a territory
 	 */
@@ -7,18 +7,18 @@ var Risk = function(id, g_id, m_id, adjacent) {
 		
 		if( id == '' ) return;
 		
-		switch(this.gameStep) {
-			case 0:
-				this.actionPerformed_step0(id);
+		switch(this.g_step) {
+			case '1':
+				this.actionPerformed_step1(id);
 				break;
 			
-			case 2:
-				this.actionPerformed_step2(id);
+			case '3':
+				this.actionPerformed_step3(id);
 				break;
 		}
 	};
 	
-	this.actionPerformed_step0 = function(id) {
+	this.actionPerformed_step1 = function(id) {
 		if( (this.actionFrom == null) && Risk.checkClass(this.document.getElementById(id), 'player_'+this.m_id) )
 		{
 			this.actionFrom = id;
@@ -82,8 +82,31 @@ var Risk = function(id, g_id, m_id, adjacent) {
 	/**
 	 * Confirm all the actions performed and wait the answer from the server
 	 */
-	this.confirm = function() {
-		this.gameStep++;
+	this.confirm = function() {		
+		if( this.actions.length > 0 )
+		{
+			var postvars = '';
+			
+			// Actions to submit
+			for(var i=0; i<this.actions.length; i++)
+			{
+				postvars += 'action[]='+this.actions[i][0]+';'+this.actions[i][1]+';'+this.actions[i][2]+';'+this.actions[i][3]+'&';
+			}
+			
+			this.actions = new Array();
+			
+			Util.Ajax({
+				url: '?action=act',
+				method: 'POST',
+				args: postvars
+			});
+		}
+		
+		this.g_step++;
+		this.wait();
+	};
+	
+	this.wait = function() {
 		var risk=this;
 		this.cron = new Timeout.ajax({
 			timeout: 3000,
@@ -99,29 +122,53 @@ var Risk = function(id, g_id, m_id, adjacent) {
 		$('risk_confirm').value="Attente...";
 		$('risk_confirm').disabled=true;
 		this.cron.start();
-	};
+	}
 	
 	this.solveCallback = function(event) {
-		//alert(event);
+		// If return, then display changes and go to the next step !
 	};
 	
 	/**
 	 * Game Step :
-	 * 	0 => Waiting for actions (attack, moving) from the player
-	 *  1 => Waiting for response from the server
-	 *  2 => Waiting for actions (placing reserve armies) from the player
-	 *  3 => Waiting for response from the server
+	 * 	1 => Waiting for actions (attack, moving) from the player
+	 *  2 => Waiting for response from the server
+	 *  3 => Waiting for actions (placing reserve armies) from the player
+	 *  4 => Waiting for response from the server
 	 */
-	this.gameStep = 0;
+	this.actionStep = function() {
+		switch(this.g_step)
+		{
+			case '1':
+			case '3':
+				this.enableCursors();
+				break;
+			
+			case '2':
+			case '4':
+				this.wait();
+				break;
+		}
+	}
+	
+	// Tempo
+	this.actionFrom = null;
+	
+	this.g_step = g_step%5+1; // 5 => 1
 	this.m_id = m_id;
 	this.g_id = g_id;
-	this.actionFrom = null;
 	this.document = $(id).getSVGDocument();
 	this.actions = new Array();
 	this.adjacent = adjacent;
 	this.cron = null;
 	
-	this.enableCursors();
+	if( confirmed ) {
+		// User have confirmed, it's like the next step	for him
+		this.confirm();
+	}
+	else
+	{
+		this.actionStep(); // He's not different from the others so same problem !
+	}
 };
 
 Risk.checkClass = function (elt, className) {
