@@ -4,17 +4,16 @@ Revoir les "Oust!" et le "bad access key"
 
 Nombre d'armées par territoire (positions sur la carte)
 Choisir nombre de troupes à déplacer
-Rendre visible sur la carte le plan de bataille
 Valider le plan
 Calculer le résultat
 Etape renforcements
 Si ajout action et action déjà existante, ajouter aux forces
 Déterminer gagnant partie
 Enregistrer partie une fois finie (Historique)
-Mieux placer les cercles sur pays
-Afficher fleches
-Permettre de clicker sur le cercle pour choisir le pays
-Lors de l'accès a une partie, voir l'étape actuelle et si attente, attendre en JS...
+Double cliquer sur une fleche pour la supprimer
+Cliquer sur une fleche pour afficher dans le menu en bas les options
+Verifier le nombre de troupes par rapport a celles dans le territoire
+Chnger le nombre de troupes en enlevant celles parties ?
 
 --------------------- Détails -------------------------------------------
 Optimisation de la methode mexec de MySQL_DBMS
