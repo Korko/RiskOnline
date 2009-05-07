@@ -34,6 +34,9 @@ class Join_Game extends Model
 		$insert = TRUE;
 		try
 		{
+			if( !isset($params['game']) )
+				throw new Exception('No Game given');
+				
 			$game = new Game($params['game']);
 			
 			if( $game->isIn(F::i('Session')->getMid()) )

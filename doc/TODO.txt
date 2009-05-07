@@ -17,9 +17,10 @@ Permettre de clicker sur le cercle pour choisir le pays
 Lors de l'accès a une partie, voir l'étape actuelle et si attente, attendre en JS...
 
 --------------------- Détails -------------------------------------------
+Optimisation de la methode mexec de MySQL_DBMS
 Gestion du compte membre
 Interface Admin/Modération
-Statistiques --(Dan)
+Statistiques
 Changer de couleur dans partie --(Dan)
 Connexion Automatique
 Faire l'animation du déplacement des troupes

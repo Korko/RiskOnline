@@ -1,2 +1,17 @@
 # errors
 error/*
+
+# ma config ^^
+config.php
+
+# Gedit de m**
+*~
+class/*~
+class/DBMS/*~
+doc/*~
+lang/*~
+lng/fr/*~
+model/*~
+view/*~
+view/images/*~
+view/js/*~

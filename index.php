@@ -11,13 +11,13 @@ define('_INDEX', true);
 require('config.php');
 
 // Require libraries
-for($i=0; $i<count($_GLOBALS['libraries']); $i++)
+for($i=0; $i<count($GLOBALS['libraries']); $i++)
 {
-	if( !file_exists(_LIB_DIR . $_GLOBALS['libraries'][$i]) )
+	if( !file_exists(_LIB_DIR . $GLOBALS['libraries'][$i]) )
 	{
-		throw new FileNotFoundException('Library '.$_GLOBALS['libraries'][$i]);
+		throw new FileNotFoundException('Library '.$GLOBALS['libraries'][$i]);
 	}
-	require(_LIB_DIR . $_GLOBALS['libraries'][$i]);
+	require(_LIB_DIR . $GLOBALS['libraries'][$i]);
 }
 
 // Activate Assertions if mode DEBUG
@@ -49,7 +49,7 @@ try
 	Factory::getInstance('Lang');
 
 	// What Params ? Priority to the requested
-	$params = ($_SERVER['REQUEST_METHOD'] == 'GET') ? array_merge($_POST, $_GET) : array_merge($_GET, $_POST);
+	$params = $_GET + $_POST;
 
 	try
 	{

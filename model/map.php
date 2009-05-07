@@ -14,6 +14,9 @@ class Map extends Model
 	{
 		try
 		{
+			if( !isset($params['game']) )
+				throw new Exception('No Game given');
+				
 			$game = new Game($params['game']);
 		}
 		catch(Exception $e)
@@ -21,6 +24,8 @@ class Map extends Model
 			// Get Out!
 			die('Oust !');
 		}
+		
+		$params['mode'] = isset($params['mode']) ? $params['mode'] : '';
 		
 		switch($params['mode'])
 		{

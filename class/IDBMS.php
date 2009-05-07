@@ -26,7 +26,7 @@ interface IDBMS
 	public function exec($sql, $params=array());
 	
 	// Multiple Query
-	public function mexec($array_sql, $array_params=array());
+	public function mexec($array);
 	
 	/**
 	 * Escape a string in order to protect against SQL Injections

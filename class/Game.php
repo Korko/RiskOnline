@@ -36,17 +36,20 @@ class Game
 		return $this->players_obj;
 	}
 	
-	public function isIn($m_id)
+	public function getPlayer($m_id)
 	{
-		$found = FALSE;
-		
-		for($i=0; $i<count($this->players_obj) && !$found; $i++)
+		for($i=0; $i<count($this->players_obj); $i++)
 		{
 			if( $this->players_obj[$i]->m_id == $m_id )
-				$found = TRUE;
+				return $this->players_obj[$i];
 		}
 		
-		return $found;
+		return NULL;
+	}
+	
+	public function isIn($m_id)
+	{
+		return ($this->getPlayer($m_id) != NULL);
 	}
 	
 	public function getNumPlayers()

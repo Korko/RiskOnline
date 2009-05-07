@@ -36,9 +36,8 @@ class Session extends Singleton
 
 	public function close()
 	{
-		//session_regenerate_id(false);
+		session_regenerate_id(false);
 		session_write_close();
-		F::i(_DBMS_SYS)->exec('UPDATE !prefix_sessions SET m_id = ?, s_id = ? WHERE s_id = ?', array($this->mid, session_id(), $this->sid));
 	}
 
 	private function setId($sid)
@@ -211,6 +210,8 @@ class Session extends Singleton
 		}
 	}
 
+
+
 	/**
 	 * Session handler functions
 	 * @throws DatabaseException Database Error
@@ -281,6 +282,8 @@ class Session extends Singleton
 
 	public function _close()
 	{
+		F::i(_DBMS_SYS)->exec('UPDATE !prefix_sessions SET m_id = ?, s_id = ? WHERE s_id = ?', array($this->mid, session_id(), $this->sid));
+
 		// Bybye !
 		return TRUE;
 	}

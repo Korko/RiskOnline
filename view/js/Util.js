@@ -70,10 +70,13 @@ Util.Ajax = function(config) {
 
 	if( !config.args ) config.args = '';
 
+	if( config.method == 'POST' || config.form )
+	{
+		handle.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	}
+	
 	//var popup;
 	if(config.form) {
-		handle.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
 		form = $(config.form);
 
 		if(form == null) throw new Error('Bad Form Id');

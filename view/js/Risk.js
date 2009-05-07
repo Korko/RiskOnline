@@ -7,7 +7,7 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 		
 		if( id == '' ) return;
 		
-		switch(this.g_step) {
+		switch(this.getStep()) {
 			case '1':
 				this.actionPerformed_step1(id);
 				break;
@@ -17,6 +17,14 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 				break;
 		}
 	};
+	
+	// Loops so for calcs, 5 => 1
+	this.getStep = function() {
+		if( this.g_step < 5 )
+			return this.g_step;
+		else
+			return this.g_step %5 + 1;
+	}
 	
 	this.actionPerformed_step1 = function(id) {
 		if( (this.actionFrom == null) && Risk.checkClass(this.document.getElementById(id), 'player_'+this.m_id) )
@@ -90,13 +98,13 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 			// Actions to submit
 			for(var i=0; i<this.actions.length; i++)
 			{
-				postvars += 'action[]='+this.actions[i][0]+';'+this.actions[i][1]+';'+this.actions[i][2]+';'+this.actions[i][3]+'&';
+				postvars += 'act[]='+this.actions[i][0]+';'+this.actions[i][1]+';'+this.actions[i][2]+';'+this.actions[i][3]+'&';
 			}
 			
 			this.actions = new Array();
 			
 			Util.Ajax({
-				url: '?action=act',
+				url: '?action=act&game='+this.g_id,
 				method: 'POST',
 				args: postvars
 			});
@@ -111,7 +119,7 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 		this.cron = new Timeout.ajax({
 			timeout: 3000,
 			config: {
-				url: '?action=solve&game='+this.g_id,
+				url: '?action=solve&game='+this.g_id+'&step='+this.g_step,
 				callback: function(event) {
 					risk.solveCallback(event);
 				}
@@ -136,7 +144,7 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 	 *  4 => Waiting for response from the server
 	 */
 	this.actionStep = function() {
-		switch(this.g_step)
+		switch(this.getStep())
 		{
 			case '1':
 			case '3':
@@ -153,7 +161,7 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 	// Tempo
 	this.actionFrom = null;
 	
-	this.g_step = g_step%5+1; // 5 => 1
+	this.g_step = g_step;
 	this.m_id = m_id;
 	this.g_id = g_id;
 	this.document = $(id).getSVGDocument();
@@ -161,13 +169,13 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 	this.adjacent = adjacent;
 	this.cron = null;
 	
-	if( confirmed ) {
-		// User have confirmed, it's like the next step	for him
-		this.confirm();
+	if( confirmed == '0') {
+		this.actionStep(); // He's not different from the others so same problem !
 	}
 	else
 	{
-		this.actionStep(); // He's not different from the others so same problem !
+		// User have confirmed, it's like the next step	for him
+		this.confirm();
 	}
 };
 

@@ -40,7 +40,7 @@ class Tools
 		return self::saltHash($password, $obj->m_salt);
 	}
 
-	public static function saltHash($password, $salt)
+	public static function saltHash($password, $salt='')
 	{
 		return sha1(md5($password . $salt) . $salt);
 	}
@@ -108,53 +108,52 @@ class Tools
 		echo "</pre>";
 	}
 
+	private static function generateErrorMessage($errno, $errstr, $errfile, $errline, $prefix)
+	{
+		return $errstr . ' in ' . $errfile . ' on line ' . $errline . "\n\n" . var_export(debug_backtrace(), TRUE);
+	}
+	
 	public static function handlerError($errno, $errstr, $errfile, $errline)
 	{
-		$message = '';
-		$final = FALSE;
-
+		$errnum = NULL;
+		
 		switch($errno)
 		{
 			case E_NOTICE:
 			case E_USER_NOTICE:
 			case E_STRICT:
-				$message .= 'Notice: ';
+				$message = Tools::generateErrorMessage($errno, $errstr, $errfile, $errline, 'Notice: ');
 				break;
 
 			case E_WARNING:
 			case E_USER_WARNING:
-				$message .= 'Warning: ';
+				$message = Tools::generateErrorMessage($errno, $errstr, $errfile, $errline, 'Warning: ');
 				break;
 
 			case E_DEPRECATED:
 			case E_USER_DEPRECATED:
-				$message .= 'Deprecated: ';
+				$message = Tools::generateErrorMessage($errno, $errstr, $errfile, $errline, 'Deprecated: ');
 				break;
 
 			case E_USER_ERROR:
 			case E_RECOVERABLE_ERROR:
-				$message .= 'Error: ';
-				$final = TRUE;
+				$message = Tools::generateErrorMessage($errno, $errstr, $errfile, $errline, 'Error: ');
+				$errnum = Record::note($message);
 				break;
 
 			default:
-				$message .= 'Unknown '.$errno.': ';
-				$final = TRUE;
+				$message = Tools::generateErrorMessage($errno, $errstr, $errfile, $errline, 'Unknown '.$errno.': ');
+				$errnum = Record::note($message);
 		}
 
-		$message .= $errstr . ' in ' . $errfile . ' on line ' . $errline;
-
-		$message .= "\n\n";
-		$message .= var_export(debug_backtrace(), TRUE);
-		
-		$errnum = Record::note($message);
-
-		if( $errnum == NULL )
-			return FALSE; // Let PHP manage this error
-
-		if( $final )
+		if( !is_null($errnum) )
 			die('Error n° '.$errnum); // Show the name of the file
-
+		
+		if( _DEBUG )
+		{
+			echo($message);
+		}
+		
 		return TRUE; // Ok PHP ! We manage successfully this error, do not manage it again
 	}
 	

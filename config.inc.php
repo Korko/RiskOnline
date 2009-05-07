@@ -46,11 +46,12 @@ define('_CHARSET', 'utf-8');
 
 
 
-
-
 /********************************
  **** Don't touch under this ****
  *********************************/
+
+// Priorities
+$_GLOBALS['priorities'] = array(0, 1);
 
 // Dirs (constants)
 define('_LIB_DIR', './class/');
@@ -62,6 +63,7 @@ define('_MODEL_DIR', './model/');
 define('_DBMS_DIR', './class/DBMS/');
 
 // Libraries
+$_GLOBALS['libraries'] = array();
 $_GLOBALS['libraries'][] = 'Exception.php';
 $_GLOBALS['libraries'][] = 'Singleton.php';
 $_GLOBALS['libraries'][] = 'Factory.php';
