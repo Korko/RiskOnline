@@ -4,7 +4,10 @@ function $() {
 		var element = arguments[i];
 
 		if (typeof element == 'string')
-			element = document.getElementById(element);
+			if( document.getElementById(element) )
+				element = document.getElementById(element);
+			else
+				return null;
 
 		if (!element.id)
 			element.id = new Date().getTime();

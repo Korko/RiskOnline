@@ -47,6 +47,26 @@
 			{$styles.style_code}
 		}
 	<!-- END LOOP -->
+	
+	#path{
+		fill:#000000;
+	}
+	
+	#Arrow{
+<!--
+	Les deux doivent etre identique fill => interieur de la tete
+-->
+		fill:#FF0080;stroke:#FFFFFF;
+	}
+	
+	#Arrow g.action {
+		fill:#00FF80;
+	}
+	
+	#Arrow g {
+		display: none;
+	}
+	
 </style>
 
 <g id="Mer">
@@ -56,6 +76,29 @@
 <defs>
 	<path id="trait" d="M0,0 l-3,-400 l7,0 z" />
 	<rect id="pastille" x="0" y="0" width="60" height="60" stroke="black" stroke-width="4" />
+	<radialGradient id="Pointille" gradientUnits="userSpaceOnUse" cx="400" cy="200" r="100" fx="400" fy="200">
+		<stop offset="0%" id="pointille1"/>
+		<stop offset="5%" id="pointille2"/>
+		<stop offset="10%" id="pointille1"/>
+		<stop offset="15%" id="pointille2"/>
+		<stop offset="20%" id="pointille1"/>
+		<stop offset="25%" id="pointille2"/>
+		<stop offset="30%" id="pointille1"/>
+		<stop offset="35%" id="pointille2"/>
+		<stop offset="40%" id="pointille1"/>
+		<stop offset="45%" id="pointille2"/>
+		<stop offset="50%" id="pointille1"/>
+		<stop offset="55%" id="pointille2"/>
+		<stop offset="60%" id="pointille1"/>
+		<stop offset="65%" id="pointille2"/>
+		<stop offset="70%" id="pointille1"/>
+		<stop offset="75%" id="pointille2"/>
+		<stop offset="80%" id="pointille1"/>
+		<stop offset="85%" id="pointille2"/>
+		<stop offset="90%" id="pointille1"/>
+		<stop offset="95%" id="pointille2"/>
+		<stop offset="100%" id="pointille1"/>
+  </radialGradient>
 </defs>
 
 <g id="legendes" visibility="visible" transform="scale(0.2) translate(0,1700)">
@@ -72,10 +115,322 @@
 	<g class="{$territories.cou_name} territory player_{$territories.m_id}">
 		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
 		
-		<circle cx="{$territories.troops_x}" cy="{$territories.troops_y}" r="15" />
 		<text x="{$={$territories.troops_x}-4}" y="{$={$territories.troops_y}+6}" id="{$territories.con_name}_troops">{$territories.troops}</text>
 	</g>
 	<!-- END LOOP -->
+</g>
+<g id="Path">
+	<rect id="Path-AfriqueNord-Bresil" transform="translate(-16,120)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="22" height="2"/>
+	<g id="Path-Kamtchaka-Alaska">
+		<rect transform="translate(-299,-119)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="30" height="2"/>
+		<rect transform="translate(401,-119)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="30" height="2"/>
+	</g>
+	<rect id="Path-AfriqueSud-Madagascar" transform="translate(138,250)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="20" height="2"/>
+	<rect id="Path-EastAfrica-Madagascar" transform="rotate(45 300,199) translate(239,20)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="45" height="2"/>
+	<rect id="Path-Mongolia-Japan" transform="translate(347,-20)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="28" height="2"/>
+	<rect id="Path-Kamtchaka-Japan" transform="rotate(45 300,199) translate(221,-285)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="30" height="2"/>
+	<rect id="Path-NordWest-Greenland" transform="rotate(-30 300,199) translate(-24,-165)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="21" height="2"/>
+	<rect id="Path-Ontario-Greenland" transform="rotate(-40 300,199) translate(-46,-150)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="82" height="2"/>
+	<rect id="Path-Quebec-Greenland" transform="rotate(-45 340,199) translate(25,-155)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="29" height="2"/>
+	<rect id="Path-Greenland-Iceland" transform="rotate(50 340,199) translate(-93,-58)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="44" height="2"/>
+	<rect id="Path-Iceland-Agleterre" transform="rotate(-80 340,199) translate(73,-8)" fill="url(#Pointille)" stroke-width="0" x="300" y="199" width="44" height="2"/>
+</g>
+
+<g id="Arrow">
+	<g id="Arrow-Alaska-NorthwestTerritory" transform="rotate(0 313,144) translate(53,54) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-NorthwestTerritory-Alaska" transform="rotate(180 313,144) translate(515,185) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-NorthwestTerritory-Greenland" transform="rotate(-20 313,144) translate(190,-19) scale(0.19)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Greenland-NorthwestTerritory" transform="rotate(160 313,144) translate(345,230) scale(0.19)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Alaska-Alberta" transform="rotate(30 313,144) translate(73,201) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Alberta-Alaska" transform="rotate(-150 313,144) translate(495,38) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Alberta-Ontario" transform="rotate(0 313,144) translate(118,100) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Ontario-Alberta" transform="rotate(180 313,144) translate(450,138) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Ontario-Greenland" transform="rotate(-33 313,144) translate(188,3) scale(0.25,0.17)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Greenland-Ontario" transform="rotate(147 216,55) translate(188,0) scale(0.25,0.17)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Quebec-Greenland" transform="rotate(-45 313,144) translate(255,30) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Greenland-Quebec" transform="rotate(135 313,144) translate(300,197) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Ontario-Quebec" transform="rotate(0 313,144) translate(165,110) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Quebec-Ontario" transform="rotate(180 313,144) translate(404,128) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-NorthwestTerritory-Alberta" transform="rotate(90 170,82) translate(165,110) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Alberta-NorthwestTerritory" transform="rotate(-90 313,144) translate(334,-70) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Alberta-WesternUnitedStates" transform="rotate(90 313,144) translate(294,315) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-WesternUnitedStates-Alberta" transform="rotate(-90 313,144) translate(284,-70) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Ontario-EasternUnitedStates" transform="rotate(90 313,144) translate(300,267) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-EasternUnitedStates-Ontario" transform="rotate(-90 313,144) translate(280,-20) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Quebec-EasternUnitedStates" transform="rotate(-45 313,144) translate(185,52) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-EasternUnitedStates-Quebec" transform="rotate(135 313,144) translate(368,174) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-WesternUnitedStates-EasternUnitedStates" transform="rotate(0 313,144) translate(125,160) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-EasternUnitedStates-WesternUnitedStates" transform="rotate(180 313,144) translate(450,78) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-EasternUnitedStates-CentralAmerica" transform="rotate(135 313,144) translate(448,174) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-CentralAmerica-EasternUnitedStates" transform="rotate(-45 313,144) translate(105,52) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-WesternUnitedStates-CentralAmerica" transform="rotate(90 313,144) translate(354,315) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-CentralAmerica-WesternUnitedStates" transform="rotate(-90 313,144) translate(224,-70) scale(0.1)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-CentralAmerica-EasternUnitedStates" transform="rotate(-45 313,144) translate(105,52) scale(0.15)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-CentralAmerica-Venezuela" transform="rotate(25 313,144) translate(194,285) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Venezuela-CentralAmerica" transform="rotate(-155 313,144) translate(364,-56) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Venezuela-Bresil" transform="rotate(75 313,144) translate(404,255) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Bresil-Venezuela" transform="rotate(-105 313,144) translate(164,-26) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Venezuela-Peru" transform="rotate(100 313,144) translate(464,235) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Peru-Venezuela" transform="rotate(-80 313,144) translate(94,-6) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Peru-Bresil" transform="rotate(0 313,144) translate(188,317) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Bresil-Peru" transform="rotate(180 313,144) translate(380,-78) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Peru-Argentine" transform="rotate(80 313,144) translate(484,272) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Argentine-Peru" transform="rotate(-100 313,144) translate(74,-41) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Bresil-Argentine" transform="rotate(115 313,144) translate(528,92) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Argentine-Bresil" transform="rotate(-65 313,144) translate(34,140) scale(0.14)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Bresil-NorthAfrica" transform="rotate(0 313,144) translate(245,282) scale(0.2)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-NorthAfrica-Bresil" transform="rotate(-180 313,144) translate(285,-78) scale(0.2)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-NorthAfrica-Egypt" transform="rotate(0 313,144) translate(345,262) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Egypt-NorthAfrica" transform="rotate(-180 313,144) translate(223,-25) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-NorthAfrica-EastAfrica" transform="rotate(0 313,144) translate(370,300) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-EastAfrica-NorthAfrica" transform="rotate(-180 313,144) translate(199,-63) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-Egypt-EastAfrica" transform="rotate(75 313,144) translate(395,62) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
+	<g id="Arrow-EastAfrica-Egypt" transform="rotate(-105 313,144) translate(173,175) scale(0.12)">
+		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
+		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
+		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
+		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
+	</g>
 </g>
 
 </svg>

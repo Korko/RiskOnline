@@ -116,7 +116,7 @@ CREATE TABLE mvc_countries (
 
 CREATE TABLE mvc_adjacent (
 	cou_id1					INT(8) UNSIGNED NOT NULL,
-	cou_id2					INT(8) UNSIGNED NOT NULL,
+	cou_id2					INT(8) UNSIGNED NOT NULL
 	
 	CONSTRAINT PK_ADJACENT PRIMARY KEY(cou_id1, cou_id2),
 	INDEX(cou_id2, cou_id1),
