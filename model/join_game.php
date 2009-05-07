@@ -89,8 +89,8 @@ class Join_Game extends Model
 					FROM !prefix_members m, !prefix_games AS g, !prefix_players AS p 
 					WHERE g.m_id = m.m_id 
 						AND p.g_id = g.g_id 
-						AND ? NOT IN (
-							SELECT m_id FROM !prefix_players WHERE g_id = g.g_id
+						AND g.g_id NOT IN (
+							SELECT g_id FROM !prefix_players WHERE m_id = ?
 						)';
 			$array = array(F::i('Session')->getMid());
 			
