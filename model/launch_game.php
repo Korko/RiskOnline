@@ -70,6 +70,7 @@ class Launch_Game extends Model
 		$lands = array_chunk($countries, $countries_per_player);
 		
 		// What to do with the last countries ? Give...
+		$remaining = array();
 		if( count($lands) > $count_players ) $remaining = $lands[$count_players];
 		shuffle($players);
 		for($i=0; $i<count($remaining); $i++)

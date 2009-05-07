@@ -61,12 +61,12 @@ INSERT INTO mvc_countries (cou_id, cou_name, con_id, cou_income, cou_troops_x, c
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (36, 34); # Alaska - Northwest Territory
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (36, 37); # Alaska - Alberta
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (36, 7); # Alaska - Kamchatka
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (34, 37); # Northwest Territory - Alberta
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (34, 38); # Northwest Territory - Ontario
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (34, 35); # Northwest Territory - Greenland
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (37, 34); # Northwest Territory - Alberta
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (37, 38); # Northwest Territory - Ontario
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (37, 35); # Northwest Territory - Greenland
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (35, 23); # Greenland - Iceland
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (37, 38); # Alberta - Ontario
-INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (37, 31); # Alberta - Western United States
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (34, 38); # Alberta - Ontario
+INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (34, 31); # Alberta - Western United States
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (38, 35); # Ontario - Greenland
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (38, 31); # Ontario - Western United States
 INSERT INTO mvc_adjacent (cou_id1, cou_id2) VALUES (38, 32); # Ontario - Quebec
