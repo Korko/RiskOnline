@@ -42,9 +42,12 @@ try
 	// What the visitor want to do ?
 	$action = (isset($_GET['action']) && !empty($_GET['action'])) ? $_GET['action'] : _DEFAULT_ACTION;
 
+	// Initiate Cookies
+	Factory::getInstance('Cookie', _COOKIE_NAME);
+	
 	// Initiate Session
 	Factory::getInstance('Session');
-
+	
 	// Initiate Lang
 	Factory::getInstance('Lang');
 
@@ -62,10 +65,9 @@ try
 		header('HTTP/1.1 404 File Not Found');
 		exit;
 	}
-
-	// equivalent de F::i('Session')->close();
-	Factory::getInstance('Session')->close();
-
+	
+	F::i('Session')->close();
+	
 	$output = Tools::parseOutput($output);
 	
 	if( !_DEBUG )

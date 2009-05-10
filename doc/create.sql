@@ -1,7 +1,12 @@
+#NOREF
+DROP TABLE IF EXISTS mvc_actions_stack;
+
 #REFERENCES mvc_countries, mvc_colors, mvc_members
 DROP TABLE IF EXISTS mvc_actions CASCADE;
+DROP TABLE IF EXISTS mvc_chatbox_messages CASCADE;
 DROP TABLE IF EXISTS mvc_players CASCADE;
 DROP TABLE IF EXISTS mvc_lands CASCADE;
+DROP TABLE IF EXISTS mvc_games_history CASCADE;
 
 #REFERENCES mvc_continents
 DROP TABLE IF EXISTS mvc_adjacent CASCADE;
@@ -31,7 +36,7 @@ CREATE TABLE mvc_members (
 CREATE TABLE mvc_sessions (
 	s_id					CHAR(32) NOT NULL,
 	m_id					INT(8) UNSIGNED NOT NULL,
-	v_ip					INT NOT NULL,
+	v_ip					INT UNSIGNED NOT NULL,
 	s_date					TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 	
 	CONSTRAINT PK_SESSIONS PRIMARY KEY(s_id),
@@ -58,6 +63,7 @@ CREATE TABLE mvc_games (
 	g_access_key				CHAR(40) NULL,
 	g_start					TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	g_step					INT(8) UNSIGNED NOT NULL,
+	g_resolving				INT(1) UNSIGNED NOT NULL DEFAULT 0,
 	
 	CONSTRAINT PK_GAMES PRIMARY KEY(g_id),
 	INDEX(m_id),
@@ -116,7 +122,7 @@ CREATE TABLE mvc_countries (
 
 CREATE TABLE mvc_adjacent (
 	cou_id1					INT(8) UNSIGNED NOT NULL,
-	cou_id2					INT(8) UNSIGNED NOT NULL
+	cou_id2					INT(8) UNSIGNED NOT NULL,
 	
 	CONSTRAINT PK_ADJACENT PRIMARY KEY(cou_id1, cou_id2),
 	INDEX(cou_id2, cou_id1),
@@ -142,13 +148,15 @@ CREATE TABLE mvc_lands (
 ) TYPE=InnoDB;
 
 CREATE TABLE mvc_actions (
+	a_id					INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
 	g_id					INT(8) UNSIGNED NOT NULL,
 	cou_from				INT(8) UNSIGNED NOT NULL,
 	cou_to					INT(8) UNSIGNED NOT NULL,
 	a_strength				INT(8) UNSIGNED NOT NULL,
 	a_priority				INT(1) UNSIGNED NOT NULL DEFAULT 1, 
 	
-	CONSTRAINT PK_ACTIONS PRIMARY KEY(g_id, cou_from, cou_to),
+	CONSTRAINT PK_ACTIONS PRIMARY KEY(a_id),
+	CONSTRAINT UNIQUE_ACTIONS_GAME_FROM_TO UNIQUE(g_id, cou_from, cou_to),
 	INDEX(g_id),
 	CONSTRAINT FK_ACTIONS_GAMES FOREIGN KEY(g_id) REFERENCES mvc_games(g_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	INDEX(cou_from),
@@ -156,6 +164,15 @@ CREATE TABLE mvc_actions (
 	INDEX(cou_to),
 	CONSTRAINT FK_ACTIONS_COUNTRIES_TO FOREIGN KEY(cou_to) REFERENCES mvc_countries(cou_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) TYPE=InnoDB;
+
+CREATE TABLE mvc_actions_stack (
+	g_id					INT(8) UNSIGNED NOT NULL,
+	cou_from				INT(8) UNSIGNED,
+	cou_to					INT(8) UNSIGNED NOT NULL,
+	a_strength				INT(8) UNSIGNED NOT NULL,
+	a_priority				INT(1) UNSIGNED NOT NULL DEFAULT 1,
+	m_id					INT(8) UNSIGNED NOT NULL
+) TYPE=MyISAM;
 
 CREATE TABLE mvc_chatbox_messages (
 	mes_id					INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,

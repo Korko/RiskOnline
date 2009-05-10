@@ -2,7 +2,9 @@ var since = -1;
 var timeout = 5000;
 
 function display_chatbox_messages (request, success, args) {
-	var messages = eval(request.responseText);
+	var json = jeval(request.responseText);
+	
+	var messages = json.items;
 	
 	var html = $('chatbox').innerHTML;
 	for(var i=0; i<messages.length; i++)

@@ -133,10 +133,6 @@ Util.Ajax = function(config) {
 					(this.status == 200),
 					config.args
 				);
-
-			//if(popup){
-				//popup.close();
-			//}
 		}
 	}
 }

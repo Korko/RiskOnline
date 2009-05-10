@@ -75,7 +75,12 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 		}
 		else if( this.actionFrom != null )
 		{
-			if( Risk.checkAdjacent(this.actionFrom, id, this.adjacent) )
+			if( this.actionFrom == id )
+			{
+				this.hideArrows(this.actionFrom);
+				this.actionFrom = null;
+			}
+			else if( Risk.checkAdjacent(this.actionFrom, id, this.adjacent) )
 			{
 				// From : To : Strengh : Priority
 				this.actions.push(new Array(this.actionFrom, id, 1, 1));
@@ -85,11 +90,6 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 				if( arrow != null )
 					Risk.addClass(arrow, 'action');
 				
-				this.hideArrows(this.actionFrom);
-				this.actionFrom = null;
-			}
-			else if( this.actionFrom == id )
-			{
 				this.hideArrows(this.actionFrom);
 				this.actionFrom = null;
 			}

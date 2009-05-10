@@ -26,14 +26,37 @@ class Solve extends Model
 			if( !isset($params['step']) || empty($params['step']) )
 				throw new Exception('Need step');
 				
+			$view = View::setFile('confirm', View::JSON_FILE);
+		
 			if( $params['step'] ==  $game->g_step+1 )
 			{
 				// If all players ready
-				// Solve
-				echo 'FUCK';
+				$result = F::i(_DBMS_SYS)->query('SELECT m_id FROM !prefix_players WHERE g_id=? AND p_ready=0', array($game->g_id));
+				if( $result->getNumRows() == 0 )
+				{
+					// If somebody is solving the game
+					// Dangerous Part so ask the database to have the LAST info
+					$result = F::i(_DBMS_SYS)->query('SELECT g_resolving FROM !prefix_games WHERE g_id=?', array($game->g_id));
+					if( $result->getObject()->g_resolving == 0 )
+					{
+						// Let's Solve !
+						F::i(_DBMS_SYS)->mexec(array(
+							array('UPDATE !prefix_games SET g_resolving=1 WHERE g_id=?', array($game->g_id)),
+							array('SELECT PROC_SOLVEATTACKS(?)', array($game->g_id)),
+							array('UPDATE !prefix_players SET p_ready=0 WHERE g_id=?', array($game->g_id)),
+							array('UPDATE !prefix_games SET g_step=g_step+1 WHERE g_id=?', array($game->g_id))
+						));
+					}
+					
+					$view->setValue('confirm', 1);
+				}
+				else
+				{
+					$view->setValue('confirm', 0);
+				}
 			}
 			else if( $params['step'] ==  $game->g_step )
-				return 1;
+				$view->setValue('confirm', 1);
 			else
 				throw new Exception('Not a valid step');
 		}
@@ -42,5 +65,7 @@ class Solve extends Model
 			// Get Out!
 			die('Oust ! : '.$e->getMessage());
 		}
+		
+		return $view->getContent();
 	}
 }

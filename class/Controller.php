@@ -16,7 +16,7 @@ class Controller
 	public static function check($action, $params=array())
 	{
 		Factory::include_class($action);
-
+		
 		$privacy = defined($action.'::PRIVACY') ? constant($action.'::PRIVACY') : _PRIVACY_ALL;
 
 		if( !F::i('Session')->canAccess($privacy) )

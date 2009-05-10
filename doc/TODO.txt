@@ -4,7 +4,6 @@ Revoir les "Oust!" et le "bad access key"
 
 Nombre d'armées par territoire (positions sur la carte)
 Choisir nombre de troupes à déplacer
-Valider le plan
 Calculer le résultat
 Etape renforcements
 Si ajout action et action déjà existante, ajouter aux forces
@@ -13,10 +12,11 @@ Enregistrer partie une fois finie (Historique)
 Double cliquer sur une fleche pour la supprimer
 Cliquer sur une fleche pour afficher dans le menu en bas les options
 Verifier le nombre de troupes par rapport a celles dans le territoire
-Chnger le nombre de troupes en enlevant celles parties ?
+Changer le nombre de troupes en enlevant celles parties ?
 
 --------------------- Détails -------------------------------------------
 Optimisation de la methode mexec de MySQL_DBMS
+Afficher Erreurs retournées par chatbox (champs vide)
 Gestion du compte membre
 Interface Admin/Modération
 Statistiques
@@ -30,4 +30,5 @@ Si redirection, s'assurer qu'on reste sur le site ! (Securité Phishing)
 (Algo) Mode Defense, dégradé selon le risque
 En cliquant sur un pseudo, voir les parties créées par lui et celles où il joue (hors les siennes)
 Envoi d'un email avec rappel des identifiants à l'enregistrement
-Ajout de "J'ai oublié mon mot de passe"
+Ajout de "J'ai oublié mon mot de passe"Curseur de base : Pays allié : Fleche, Pays ennemi : Not( Impossible )
+Curseur après cliqué : Pays Ami Autre que celui cliqué et Accessible : Bouclier, Pays Ennemi accéssible : Epee, Autre pays Non accéssible : Not, Pays cliqué : Annuler (Croix rouge)

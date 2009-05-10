@@ -10,6 +10,10 @@
    version="1.0">
    
 <style type="text/css" id="style_css_sheet">
+	#Mer {
+		fill: #0000CC;
+	}
+	
 	#all{
 <!--
 	ici on remplit avec une couleur
@@ -257,13 +261,13 @@
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-Quebec-EasternUnitedStates" transform="rotate(-45 313,144) translate(185,52) scale(0.15)">
+	<g id="Arrow-EasternUnitedStates-Quebec" transform="rotate(-45 313,144) translate(185,52) scale(0.15)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-EasternUnitedStates-Quebec" transform="rotate(135 313,144) translate(368,174) scale(0.15)">
+	<g id="Arrow-Quebec-EasternUnitedStates" transform="rotate(135 313,144) translate(368,174) scale(0.15)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
@@ -359,25 +363,25 @@
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-Peru-Argentine" transform="rotate(80 313,144) translate(484,272) scale(0.14)">
+	<g id="Arrow-Peru-Argentina" transform="rotate(80 313,144) translate(484,272) scale(0.14)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-Argentine-Peru" transform="rotate(-100 313,144) translate(74,-41) scale(0.14)">
+	<g id="Arrow-Argentina-Peru" transform="rotate(-100 313,144) translate(74,-41) scale(0.14)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-Bresil-Argentine" transform="rotate(115 313,144) translate(528,92) scale(0.14)">
+	<g id="Arrow-Bresil-Argentina" transform="rotate(115 313,144) translate(528,92) scale(0.14)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-Argentine-Bresil" transform="rotate(-65 313,144) translate(34,140) scale(0.14)">
+	<g id="Arrow-Argentina-Bresil" transform="rotate(-65 313,144) translate(34,140) scale(0.14)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
@@ -419,7 +423,7 @@
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"
 		d="M 313.04407,144.19731 C 225.26604,138.63438 142.67021,153.80025 83.024137,196.35775"/>
 	</g>
-	<g id="Arrow-Egypt-EastAfrica" transform="rotate(75 313,144) translate(43O,62) scale(0.12)">
+	<g id="Arrow-Egypt-EastAfrica" transform="rotate(75 313,144) translate(470,62) scale(0.12)">
 		<path style="fill-opacity:1;stroke-width:20;stroke-linejoin:round"
 		d="M 309.16049,184.93058 C 318.05029,162.02666 323.15380,126.09862 315.46164,108.79815 C 342.98490,112.77552 382.29085,147.81379 394.84140,171.77071 C 364.99340,172.30987 350.16263,155.96490 309.16049,184.93058 z "/>
 		<path style="fill-opacity:0;stroke-width:20;stroke-linecap:round"

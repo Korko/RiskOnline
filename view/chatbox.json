@@ -1,4 +1,13 @@
 {
+	errors:[
+	<!-- BEGIN LOOP error -->
+	{
+		field: '{$error.field|escape_simple}',
+		errmsg: '{$error.errmsg|escape_simple}'
+	},
+	<!-- END LOOP -->
+	],
+	
 	items:[
 	<!-- BEGIN LOOP message -->
 	{

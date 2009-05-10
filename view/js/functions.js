@@ -162,3 +162,7 @@ function strreplace(search, replace, totalstring) {
 	
 	return before+replace+after;
 }
+
+function jeval(str) {
+	return eval('('+str+')');
+}

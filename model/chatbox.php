@@ -12,11 +12,23 @@ class Chatbox extends Model
 	public static $fields = array(
 		'name' => array(
 			'type' => 'text',
+			'check' => 'notempty'
 		),
 		'content' => array(
 			'type' => 'text',
+			'check' => 'notempty'
 		)
 	);
+	
+	public static function getNickname()
+	{
+		return (!F::i('Session')->isConnected() && !Tools::isEmpty(F::i('Cookie')->get('name'))) ? F::i('Cookie')->get('name') : F::i('Session')->getUsername();
+	}
+	
+	public static function setNickname()
+	{
+		F::i('Cookie')->set('name', $params['name']);
+	}
 	
 	public static function getFields()
 	{
@@ -32,6 +44,7 @@ class Chatbox extends Model
 	public function getView($params, $synchrone)
 	{
 		$form = new Form(self::getFields(), $params);
+		$view = View::setFile('chatbox', View::JSON_FILE);
 		
 		$fields = Chatbox::getFields();
 		if( F::i('Session')->isConnected() )
@@ -39,8 +52,17 @@ class Chatbox extends Model
 			$fields['name']['disabled'] = TRUE;
 		}
 		
+		$errors = $form->getErrors();
+		if( ! Tools::isEmpty($errors) )
+		{
+			foreach($errors as $field => $msg)
+			{
+				$view->setGroupValues('error', array('field'=>$field, 'errmsg'=>$msg));
+			}
+		}
+		
 		// If Submitting
-		if( $form->isSubmitting() )
+		if( $form->isSubmitting() && Tools::isEmpty($form->getErrors()) )
 		{
 			// TODO Sauvegarde du pseudo en cookie
 			
@@ -52,6 +74,8 @@ class Chatbox extends Model
 			else
 			{
 				$m_name = $params['name'];
+				
+				self::setNickname($m_name);
 			}
 			
 			F::i(_DBMS_SYS)->exec('INSERT INTO !prefix_chatbox_messages (m_id, m_name, mes_content) VALUES (?, ?, ?)', array(F::i('Session')->getMid(), $m_name, $params['content']));
@@ -85,8 +109,6 @@ class Chatbox extends Model
 		// Si connecté, verouiller le pseudo
 		
 		$result = F::i(_DBMS_SYS)->query($sql, $array);
-		
-		$view = View::setFile('chatbox', View::JSON_FILE);
 		
 		// Recover messages and switch the order to get the last _LIMIT_LAST_CHATBOX messages but the last at the end.
 		$messages = array();

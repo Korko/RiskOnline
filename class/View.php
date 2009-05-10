@@ -338,11 +338,14 @@ class ViewItem
 	 */
 	private function parseGroups($content)
 	{
+		$content = preg_replace('#<!-- BEGIN IFLOOP ([[:print:]]+?) -->#i', '<?php if( isset($this->groups["$1"]) && (count($this->groups["$1"]) > 0) ) { ?>', $content);
+		$content = str_ireplace('<!-- END IFLOOP -->', '<?php } ?>', $content);
+		
 		$token_loop_begin = '#<!-- BEGIN LOOP ([[:print:]]+?) -->#i';
 		$end = '<!-- END LOOP -->';
 		
 		$content = preg_replace($token_loop_begin, '<?php if( isset($this->groups["$1"]) ) for( $cursor_group_$1=0; $cursor_group_$1 < count($this->groups["$1"]); $cursor_group_$1++ ) { ?> ', $content);
-		$content = str_replace($end, '<?php } ?>', $content);
+		$content = str_ireplace($end, '<?php } ?>', $content);
 		
 		// Replace group vars
 		// TODO : Cascading group !

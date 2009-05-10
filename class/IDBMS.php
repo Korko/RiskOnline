@@ -21,7 +21,7 @@ interface IDBMS
 	 * @return IDBMSResult Result of the query
 	 */
 	public function query($sql, $params=array());
-
+	
 	// Query Without return (just a boolean) LIKE INSERT, CREATE, UPDATE
 	public function exec($sql, $params=array());
 	
