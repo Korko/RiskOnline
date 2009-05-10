@@ -3,16 +3,15 @@
 Revoir les "Oust!" et le "bad access key"
 
 Nombre d'armées par territoire (positions sur la carte)
-Choisir nombre de troupes à déplacer
+Choisir nombre de troupes à déplacer (Pour le moment faire plusieurs fois l'action)
 Calculer le résultat
 Etape renforcements
-Si ajout action et action déjà existante, ajouter aux forces
 Déterminer gagnant partie
 Enregistrer partie une fois finie (Historique)
 Double cliquer sur une fleche pour la supprimer
 Cliquer sur une fleche pour afficher dans le menu en bas les options
 Verifier le nombre de troupes par rapport a celles dans le territoire
-Changer le nombre de troupes en enlevant celles parties ?
+Afficher fleches d'actions au chargement de la page si en attente
 
 --------------------- Détails -------------------------------------------
 Optimisation de la methode mexec de MySQL_DBMS

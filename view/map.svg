@@ -119,7 +119,7 @@
 	<g class="{$territories.cou_name} territory player_{$territories.m_id}">
 		<path class="{$territories.con_name} player_{$territories.m_id}" id="{$territories.cou_name}" d="{$territories.cou_d}" />
 		
-		<text x="{$={$territories.troops_x}-4}" y="{$={$territories.troops_y}+6}" id="{$territories.con_name}_troops">{$territories.troops}</text>
+		<text x="{$={$territories.troops_x}-4}" y="{$={$territories.troops_y}+6}" id="{$territories.cou_name}_troops">{$territories.troops}</text>
 	</g>
 	<!-- END LOOP -->
 </g>

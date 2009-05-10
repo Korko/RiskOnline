@@ -47,6 +47,9 @@ class Act extends Model
 				{
 					$obj = $result->getObject();
 					
+					// Check capacity...
+					// TODO
+					
 					$from_id = ($obj->cou_from == $from) ? $obj->cou_id1 : $obj->cou_id2;
 					$to_id = ($obj->cou_to == $to) ? $obj->cou_id2 : $obj->cou_id1;		
 			

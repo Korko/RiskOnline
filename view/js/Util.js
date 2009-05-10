@@ -59,10 +59,12 @@ Util.Ajax = function(config) {
 	{
 		method = 'GET';
 	}
+	
+	var asynchrone = (config.synchrone == 'undefined' || config.synchrone) ? false : true;
 
 	if(!config.url) throw new Error("URL needed");
 
-	handle.open(method, config.url, true);
+	handle.open(method, config.url, asynchrone);
 
 	if(config.timeout) {
 		//handle.setTimeout(config.timeout);
@@ -134,6 +136,14 @@ Util.Ajax = function(config) {
 					config.args
 				);
 		}
+	}
+	
+	if( asynchrone && config.callback) {
+		config.callback(
+			handle,
+			(handle.status == 200),
+			config.args
+		);
 	}
 }
 

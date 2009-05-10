@@ -67,8 +67,23 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 		}
 	}
 	
+	this.getTroops = function(id) {
+		var troops = (this.document.getElementById(id+'_troops')) ? parseInt(this.document.getElementById(id+'_troops').textContent) : -1;
+		return troops;
+	}
+	
+	this.setTroops = function(id, troops) {
+		if(this.document.getElementById(id+'_troops')) {
+			this.document.getElementById(id+'_troops').textContent = ""+troops+"";
+		}
+	}
+	
+	this.actionPerformed_step2 = function(id) {
+		
+	}
+	
 	this.actionPerformed_step1 = function(id) {
-		if( (this.actionFrom == null) && Risk.checkClass(this.document.getElementById(id), 'player_'+this.m_id) )
+		if( (this.actionFrom == null) && Risk.checkClass(this.document.getElementById(id), 'player_'+this.m_id) && this.getTroops(id) > 1 )
 		{
 			this.displayArrows(id);
 			this.actionFrom = id;
@@ -82,16 +97,7 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 			}
 			else if( Risk.checkAdjacent(this.actionFrom, id, this.adjacent) )
 			{
-				// From : To : Strengh : Priority
-				this.actions.push(new Array(this.actionFrom, id, 1, 1));
-				
-				var arrow = this.getArrow(this.actionFrom, id);
-				
-				if( arrow != null )
-					Risk.addClass(arrow, 'action');
-				
-				this.hideArrows(this.actionFrom);
-				this.actionFrom = null;
+				this.addAction(this.actionFrom, id, 1, 1);
 			}
 			else
 			{
@@ -106,18 +112,26 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 		if( id == '' )
 			return;
 			
+		/**
+		 * Game Step :
+		 * 	1 => Waiting for actions (attack, moving) from the player
+		 *  2 => Waiting for actions (placing reserve armies) from the player
+		 */
 		switch(this.getStep()) {
 			case '1':
 				this.actionPerformed_step1(id);
 				break;
 			
-			case '3':
-				this.actionPerformed_step3(id);
+			case '2':
+				this.actionPerformed_step2(id);
 				break;
 		}
 	};
 	
 	this.enableCursors = function() {
+		$('risk_confirm').value="Valider";
+		$('risk_confirm').disabled=false;
+		
 		var terr = this.document.getElementsByTagName('g');
 		for(var i=0; i<terr.length; i++)
 		{
@@ -140,6 +154,9 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 	};
 	
 	this.disableCursors = function() {
+		$('risk_confirm').value="Attente...";
+		$('risk_confirm').disabled=true;
+		
 		var terr = this.document.getElementsByTagName('g');
 		for(var i=0; i<terr.length; i++)
 		{
@@ -184,42 +201,57 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 			timeout: 3000,
 			config: {
 				url: '?action=solve&game='+this.g_id+'&step='+this.g_step,
+				synchrone: false,
 				callback: function(event) {
 					risk.solveCallback(event);
 				}
 			}
 		});
 		
-		this.disableCursors();
-		$('risk_confirm').value="Attente...";
-		$('risk_confirm').disabled=true;
 		this.cron.start();
 	};
 	
 	this.solveCallback = function(event) {
-		// If return, then display changes and go to the next step !
+		var confirmed = jeval(event.responseText);
+		
+		if( confirmed.confirm == 1 )
+		{
+			this.cron.stop();
+			this.enableCursors();
+		}
 	};
 	
-	/**
-	 * Game Step :
-	 * 	1 => Waiting for actions (attack, moving) from the player
-	 *  2 => Waiting for response from the server
-	 *  3 => Waiting for actions (placing reserve armies) from the player
-	 *  4 => Waiting for response from the server
-	 */
-	this.actionStep = function() {
-		switch(this.getStep())
-		{
-			case '1':
-			case '3':
-				this.enableCursors();
-				break;
-			
-			case '2':
-			case '4':
-				this.wait();
-				break;
+	this.addAction = function(from, to, strength, priority) {
+		if( !Risk.checkAdjacent(from, to, this.adjacent) || this.getTroops(from) <= strength ) {
+			return;
 		}
+		
+		var founded=false;
+		
+		// Is there any action with the same from and to ?
+		for(var i=0; i<this.actions.length; i++)
+		{
+			if( this.actions[i][0] == from && this.actions[i][1] == to )
+			{
+				founded=true;
+				this.actions[i][2]++;
+			}	
+		}
+		
+		if( !founded )
+		{
+			// From : To : Strengh : Priority
+			this.actions.push(new Array(from, to, strength, priority));
+		}
+		
+		var arrow = this.getArrow(from, to);
+		
+		if( arrow != null )
+			Risk.addClass(arrow, 'action');
+		
+		this.setTroops(from, this.getTroops(from)-strength);
+		this.hideArrows(from);
+		this.actionFrom = null;
 	};
 	
 	// Tempo
@@ -234,11 +266,12 @@ var Risk = function(id, g_id, g_step, m_id, adjacent, confirmed) {
 	this.cron = null;
 	
 	if( confirmed == '0') {
-		this.actionStep(); // He's not different from the others so same problem !
+		this.enableCursors();
 	}
 	else
 	{
 		// User have confirmed, it's like the next step	for him
+		this.disableCursors();
 		this.confirm();
 	}
 };

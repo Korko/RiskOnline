@@ -70,8 +70,8 @@ class MySQL_DBMS extends Singleton implements IDBMS
 		{
 			assert('is_array($array[$i])');
 			
-			$params = isset($array[$i][1]) ? $array_params[$i][1] : array();
-			$this->exec($array_params[$i][0], $params); // Optimisation nécéssaire...
+			$params = isset($array[$i][1]) ? $array[$i][1] : array();
+			$this->exec($array[$i][0], $params); // Optimisation nécéssaire...
 		}
 	}
 	

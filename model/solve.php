@@ -42,9 +42,10 @@ class Solve extends Model
 						// Let's Solve !
 						F::i(_DBMS_SYS)->mexec(array(
 							array('UPDATE !prefix_games SET g_resolving=1 WHERE g_id=?', array($game->g_id)),
-							array('SELECT PROC_SOLVEATTACKS(?)', array($game->g_id)),
+							array('CALL PROC_SOLVE_ATTACKS(?)', array($game->g_id)),
 							array('UPDATE !prefix_players SET p_ready=0 WHERE g_id=?', array($game->g_id)),
-							array('UPDATE !prefix_games SET g_step=g_step+1 WHERE g_id=?', array($game->g_id))
+							array('UPDATE !prefix_games SET g_step=g_step+1 WHERE g_id=?', array($game->g_id)),
+							array('UPDATE !prefix_games SET g_resolving=0 WHERE g_id=?', array($game->g_id))
 						));
 					}
 					

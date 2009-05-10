@@ -73,7 +73,7 @@ class Session extends Singleton
 			}
 		}
 
-		$this->sid = $sid;
+		$this->setSID($sid);
 	}
 
 	private function generateID()
@@ -85,17 +85,21 @@ class Session extends Singleton
 	{
 		$newSID = $this->generateID();
 		
-		// Send changes to the visitor by cookies
-		// If error... too bad !
-		F::i('Cookie')->set('sid', $newSID);
+		$this->setSID($newSID);
 		
 		// Regenerate ID and Save
-		F::i(_DBMS_SYS)->exec('UPDATE !prefix_sessions SET m_id = ?, s_id = ? WHERE s_id = ?', array($this->mid, $newSID, $this->sid));
+		F::i(_DBMS_SYS)->exec('UPDATE !prefix_sessions SET s_id = ? WHERE s_id = ?', array($newSID, $this->sid));
+	}
+	
+	public function setSID($sid)
+	{
+		$this->sid = $sid;
+		F::i('Cookie')->set('sid', $sid);
 	}
 	
 	public function close()
 	{	
-
+		F::i(_DBMS_SYS)->exec('UPDATE !prefix_sessions SET m_id = ? WHERE s_id = ?', array($this->mid, $this->sid));
 	}
 
 	public function getAuth()
